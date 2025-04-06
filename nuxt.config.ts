@@ -35,6 +35,23 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
+    baseURL: '/cadastre-info/',
+  },
+  nitro: {
+    preset: 'github-pages',
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        '/', // Обязательно указываем главную страницу
+        '/services',
+        '/information',
+        '/blog',
+        '/about',
+        '/contacts',
+        '/request',
+        // Добавьте другие маршруты, которые должны быть предварительно отрендерены
+      ],
+    },
   },
 
   compatibilityDate: '2025-04-06',
