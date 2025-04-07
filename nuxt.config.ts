@@ -36,10 +36,24 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
-    baseURL: '/cadastre-info/',
+    // Исправлено: используем как base, а не baseURL, и добавляем trailing slash
+    base: '/cadastre-info/',
   },
+
   nitro: {
     preset: 'github-pages',
+    // Добавление публичного пути для корректной генерации ссылок в сборке
+    routeRules: {
+      '/**': { prerender: true },
+    },
+    // При генерации необходимо учитывать базовый путь
+    publicAssets: [
+      {
+        baseURL: 'cadastre-info',
+        dir: 'public',
+        maxAge: 60 * 60 * 24 * 365, // 1 год
+      },
+    ],
     prerender: {
       crawlLinks: true,
       routes: [
@@ -52,6 +66,29 @@ export default defineNuxtConfig({
         '/request',
         // Добавьте другие маршруты, которые должны быть предварительно отрендерены
       ],
+    },
+  },
+
+  // Исправлено: добавляем вспомогательный конфиг для GitHub Pages
+  experimental: {
+    payloadExtraction: false, // Важно для деплоя на GitHub Pages
+    inlineSSRStyles: false,
+  },
+
+  // Исправлено: явное указание путей для маршрутизации на GitHub Pages
+  router: {
+    options: {
+      strict: false,
+    },
+  },
+
+  // Важно для правильной генерации ссылок в production сборке
+  vite: {
+    resolve: {
+      alias: {
+        // Помогает решить проблемы с путями при сборке
+        vue: 'vue/dist/vue.esm-bundler',
+      },
     },
   },
 
