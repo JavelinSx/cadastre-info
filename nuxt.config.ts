@@ -2,6 +2,7 @@
 // @ts-nocheck
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  // Явно указываем режим приложения - SPA (Single Page Application)
   ssr: false,
   modules: ['@pinia/nuxt', '@nuxt/ui', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@vueuse/motion/nuxt'],
   css: ['~/assets/css/main.css'],
@@ -36,60 +37,43 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
-    // Исправлено: используем как base, а не baseURL, и добавляем trailing slash
-    base: '/cadastre-info/',
+    // Правильный базовый путь
+    // В режиме разработки используем пустой baseURL, для продакшена - /cadastre-info/
+    baseURL: '/',
+
+    // Важно: задаем директорию для сборки ассетов без префикса baseURL
+    buildAssetsDir: '/_nuxt/',
   },
 
   nitro: {
     preset: 'github-pages',
-    // Добавление публичного пути для корректной генерации ссылок в сборке
-    routeRules: {
-      '/**': { prerender: true },
+    // Обновлено: явный путь для ассетов
+    output: {
+      publicDir: '.output/public',
     },
-    // При генерации необходимо учитывать базовый путь
-    publicAssets: [
-      {
-        baseURL: 'cadastre-info',
-        dir: 'public',
-        maxAge: 60 * 60 * 24 * 365, // 1 год
-      },
-    ],
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/', // Обязательно указываем главную страницу
-        '/services',
-        '/information',
-        '/blog',
-        '/about',
-        '/contacts',
-        '/request',
-        // Добавьте другие маршруты, которые должны быть предварительно отрендерены
+      routes: ['/', '/services', '/information', '/blog', '/about', '/contacts', '/request'],
+      ignore: [
+        // Ignore routes that contain a wildcard
+        /__nuxt/,
       ],
     },
   },
 
-  // Исправлено: добавляем вспомогательный конфиг для GitHub Pages
+  // Важные настройки для сборки на GitHub Pages
+  routeRules: {
+    '/**': { prerender: true },
+  },
+
+  // Отключаем генерацию страниц на сервере
+  generate: {
+    routes: ['/'],
+  },
+
   experimental: {
-    payloadExtraction: false, // Важно для деплоя на GitHub Pages
+    payloadExtraction: false,
     inlineSSRStyles: false,
-  },
-
-  // Исправлено: явное указание путей для маршрутизации на GitHub Pages
-  router: {
-    options: {
-      strict: false,
-    },
-  },
-
-  // Важно для правильной генерации ссылок в production сборке
-  vite: {
-    resolve: {
-      alias: {
-        // Помогает решить проблемы с путями при сборке
-        vue: 'vue/dist/vue.esm-bundler',
-      },
-    },
   },
 
   compatibilityDate: '2025-04-06',
