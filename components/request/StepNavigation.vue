@@ -1,18 +1,20 @@
 <template>
     <div class="flex justify-between mt-8">
-        <transition name="fade-slide-right">
-            <UButton v-if="store.currentStep > 0" color="gray" variant="outline" @click="store.prevStep()"
+        <div>
+            <UButton v-if="store.currentStep > 0" variant="outline" @click="handlePrevStep"
                 class="transform transition-all duration-300 hover:-translate-x-1">
                 <template #leading>
                     <UIcon name="i-heroicons-arrow-left" class="w-5 h-5 mr-1" />
                 </template>
                 Назад
             </UButton>
-            <div v-else></div>
-        </transition>
+            <div v-else class="opacity-0 invisible">
+                <!-- Пустой элемент для сохранения структуры -->
+            </div>
+        </div>
 
-        <transition name="fade-slide-left">
-            <UButton v-if="store.currentStep < 3" color="primary" variant="solid" @click="store.nextStep()"
+        <div>
+            <UButton v-if="store.currentStep < 3" color="primary" variant="solid" @click="handleNextStep"
                 class="transform transition-all duration-300 hover:translate-x-1 hover:shadow-md">
                 Далее
                 <template #trailing>
@@ -20,13 +22,16 @@
                 </template>
             </UButton>
 
-            <UButton v-else color="primary" variant="solid" @click="store.submitForm()" :loading="store.isSubmitting"
-                class="transform transition-all duration-300 hover:shadow-lg relative overflow-hidden group">
+            <UButton v-else color="primary" variant="outline" @click="handleSubmit" :loading="store.isSubmitting"
+                :disabled="!store.formData.agreement"
+                class="transform transition-all duration-300 hover:shadow-lg hover:text-gray-100 relative overflow-hidden group"
+                :class="{ 'opacity-50 cursor-not-allowed': !store.formData.agreement }">
                 <span class="relative z-10">Отправить заявку</span>
                 <span
-                    class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
+                    v-if="store.formData.agreement"></span>
             </UButton>
-        </transition>
+        </div>
     </div>
 </template>
 
@@ -34,25 +39,34 @@
 import { useRequestStore } from '~/stores/requestStore';
 
 const store = useRequestStore();
+const emit = defineEmits(['scroll']);
+
+// Обработчик кнопки "Назад"
+const handlePrevStep = () => {
+    store.prevStep();
+};
+
+// Обработчик кнопки "Далее"
+const handleNextStep = () => {
+    store.nextStep();
+};
+
+// Обработчик кнопки "Отправить заявку"
+const handleSubmit = () => {
+    // Проверяем, дал ли пользователь согласие на обработку персональных данных
+    if (!store.formData.agreement) {
+        // Устанавливаем ошибку, чтобы привлечь внимание пользователя
+        store.errors.agreement = 'Необходимо согласие на обработку персональных данных';
+        // Фокусируемся на чекбоксе (или прокручиваем к нему)
+        const agreementCheckbox = document.querySelector('input[type="checkbox"]');
+        if (agreementCheckbox) {
+            agreementCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => agreementCheckbox.focus(), 500);
+        }
+        return;
+    }
+
+    // Если согласие дано, отправляем форму
+    store.submitForm();
+};
 </script>
-
-<style scoped>
-.fade-slide-right-enter-active,
-.fade-slide-right-leave-active,
-.fade-slide-left-enter-active,
-.fade-slide-left-leave-active {
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-.fade-slide-right-enter-from,
-.fade-slide-right-leave-to {
-    opacity: 0;
-    transform: translateX(-20px);
-}
-
-.fade-slide-left-enter-from,
-.fade-slide-left-leave-to {
-    opacity: 0;
-    transform: translateX(20px);
-}
-</style>

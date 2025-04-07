@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="text-xl font-semibold mb-4 animate-fadeIn">Выберите услугу</h3>
+        <h3 class="text-xl font-semibold mb-4 animate-fadeIn text-gray-800">Выберите услугу</h3>
         <div class="space-y-4">
             <div v-for="(service, index) in itemsForStepperServiceI" :key="service.id"
                 class="border rounded-md p-4 cursor-pointer transition-all duration-300 animate-fadeIn" :class="{
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="ml-3">
-                        <h4 class="font-medium">{{ service.label }}</h4>
+                        <h4 class="font-medium text-gray-700">{{ service.label }}</h4>
                     </div>
                 </div>
             </div>
@@ -31,14 +31,15 @@
             <!-- Выбор типа услуги, если услуга выбрана -->
             <transition name="slide-down">
                 <div v-if="store.formData.service && serviceTypes.length > 0" class="mt-6">
-                    <h4 class="text-lg font-semibold mb-3">Выберите тип услуги</h4>
+                    <h4 class="text-lg font-semibold mb-3 text-gray-800">Выберите тип услуги</h4>
                     <div class="grid md:grid-cols-2 gap-4">
                         <div v-for="(type, typeIndex) in serviceTypes" :key="type.id"
                             class="border rounded-md p-3 cursor-pointer transition-all duration-300 animate-fadeIn"
                             :class="{
                                 'border-primary-600 bg-primary-50 transform hover:scale-[1.01]': store.formData.serviceType === type.id,
                                 'border-gray-200 hover:border-primary-400 hover:shadow-sm': store.formData.serviceType !== type.id
-                            }" @click="store.setServiceType(type.id)" :style="`animation-delay: ${300 + typeIndex * 75}ms`">
+                            }" @click="store.setServiceType(type.id)"
+                            :style="`animation-delay: ${300 + typeIndex * 75}ms`">
                             <div class="flex items-center">
                                 <div class="w-4 h-4 rounded-full border relative flex items-center justify-center mr-2 transition-all duration-300"
                                     :class="{
@@ -48,7 +49,7 @@
                                     <div v-if="store.formData.serviceType === type.id"
                                         class="w-2 h-2 rounded-full bg-primary-600 animate-scale-in"></div>
                                 </div>
-                                <span>{{ type.label }}</span>
+                                <span class="text-gray-700">{{ type.label }}</span>
                             </div>
                         </div>
                     </div>

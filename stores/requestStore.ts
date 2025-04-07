@@ -37,13 +37,20 @@ export const useRequestStore = defineStore('request', {
     },
 
     nextStep() {
+      // Проверяем валидацию перед переходом к следующему шагу
       if (this.validateStep()) {
-        this.currentStep++;
+        // Добавляем задержку, чтобы избежать проблем с анимацией
+        setTimeout(() => {
+          this.currentStep++;
+        }, 50);
       }
     },
 
     prevStep() {
-      this.currentStep--;
+      // Добавляем задержку, чтобы избежать проблем с анимацией
+      setTimeout(() => {
+        this.currentStep--;
+      }, 50);
     },
 
     setService(serviceId: number) {
@@ -103,6 +110,8 @@ export const useRequestStore = defineStore('request', {
       }
     },
 
+    // Обновленная функция валидации в хранилище (код для внедрения в stores/requestStore.ts)
+
     validateStep(): boolean {
       let isValid = true;
 
@@ -128,13 +137,16 @@ export const useRequestStore = defineStore('request', {
           this.errors.fullName = 'Введите ваше ФИО';
           isValid = false;
         }
+
+        // Обновленная валидация телефона
         if (!this.formData.phone) {
           this.errors.phone = 'Введите ваш телефон';
           isValid = false;
-        } else if (!/^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/.test(this.formData.phone)) {
-          this.errors.phone = 'Введите телефон в формате +7 (XXX) XXX-XX-XX';
+        } else if (this.formData.phone.length < 12 || !this.formData.phone.startsWith('+7')) {
+          this.errors.phone = 'Введите корректный номер телефона';
           isValid = false;
         }
+
         if (!this.formData.email) {
           this.errors.email = 'Введите ваш email';
           isValid = false;
@@ -142,6 +154,7 @@ export const useRequestStore = defineStore('request', {
           this.errors.email = 'Введите корректный email';
           isValid = false;
         }
+
         if (!this.formData.contactMethod) {
           this.errors.contactMethod = 'Выберите предпочтительный способ связи';
           isValid = false;

@@ -172,6 +172,15 @@ const itemsForZOUIT: ServiceTypeItem[] = [
   },
 ];
 
+export const objectTypesData = [
+  { text: 'Земельный участок', value: 'land' },
+  { text: 'Жилой дом', value: 'house' },
+  { text: 'Квартира', value: 'apartment' },
+  { text: 'Коммерческая недвижимость', value: 'commercial' },
+  { text: 'Гараж', value: 'garage' },
+  { text: 'Другое', value: 'other' },
+];
+
 // Объединенный массив типов услуг
 export const itemsServiceI: ServiceTypeItem[][] = [itemsForLandPlot, itemsForTechPlan, itemsForZOUIT, itemsForGeo];
 

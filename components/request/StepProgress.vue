@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-8">
+    <div class="mb-8 text-gray-800">
         <div class="flex justify-between">
             <div v-for="(step, index) in steps" :key="index" class="flex flex-col items-center relative"
                 :class="{ 'w-full': index < steps.length - 1 }">
@@ -13,14 +13,12 @@
                                 ? 'bg-primary-600 text-white'
                                 : 'bg-gray-200 text-gray-600'
                     ]">
-                    <transition name="fade" mode="out-in">
-                        <template v-if="store.currentStep > index">
-                            <UIcon name="i-heroicons-check" class="w-6 h-6 animate-bounce-once" />
-                        </template>
-                        <template v-else>
-                            {{ index + 1 }}
-                        </template>
-                    </transition>
+                    <template v-if="store.currentStep > index">
+                        <UIcon name="i-heroicons-check" class="w-6 h-6" />
+                    </template>
+                    <template v-else>
+                        {{ index + 1 }}
+                    </template>
                 </div>
 
                 <!-- Название шага -->
@@ -52,33 +50,3 @@ const steps = [
     { title: 'Подтверждение' }
 ];
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-
-@keyframes bounce-once {
-    0% {
-        transform: scale(0);
-    }
-
-    60% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.animate-bounce-once {
-    animation: bounce-once 0.5s ease-out forwards;
-}
-</style>

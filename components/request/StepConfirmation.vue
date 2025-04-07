@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="text-gray-800">
         <h3 class="text-xl font-semibold mb-4 animate-fadeIn">Подтверждение заявки</h3>
 
         <div class="bg-gray-50 p-4 rounded-md mb-6 animate-scaleUp shadow-sm">
@@ -56,22 +56,25 @@
             </div>
         </div>
 
-        <UFormGroup class="animate-fadeIn" style="animation-delay: 500ms">
+        <div class="animate-fadeIn" style="animation-delay: 500ms">
             <div class="flex items-start gap-2">
-                <UCheckbox :model-value="store.formData.agreement" @update:model-value="store.setAgreement($event)"
-                    name="agreement" class="transition-transform duration-300 hover:scale-110" />
-                <div>
-                    <span>Я согласен на обработку персональных данных в соответствии с </span>
-                    <NuxtLink to="/privacy-policy"
-                        class="text-primary-600 hover:text-primary-800 underline decoration-dotted transition-colors duration-300">
-                        политикой
-                        конфиденциальности</NuxtLink>
-                </div>
+                <label class="flex items-start cursor-pointer">
+                    <input type="checkbox" :checked="store.formData.agreement"
+                        @change="store.setAgreement($event.target.checked)"
+                        class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded transition-transform duration-300 hover:scale-110 mt-1" />
+                    <span class="ml-2">
+                        Я согласен на обработку персональных данных в соответствии с
+                        <NuxtLink to="/privacy-policy"
+                            class="text-primary-600 hover:text-primary-800 underline decoration-dotted transition-colors duration-300">
+                            политикой конфиденциальности
+                        </NuxtLink>
+                    </span>
+                </label>
             </div>
             <p class="text-red-500 text-sm mt-1" v-if="store.errors.agreement">
                 {{ store.errors.agreement }}
             </p>
-        </UFormGroup>
+        </div>
     </div>
 </template>
 
@@ -138,5 +141,19 @@ const getContactMethodText = (value: string) => {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+/* Стилизация чекбокса */
+input[type="checkbox"]:checked {
+    background-color: #10b981;
+    border-color: #10b981;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+input[type="checkbox"]:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #d1fae5;
+    /* primary-100 */
 }
 </style>
