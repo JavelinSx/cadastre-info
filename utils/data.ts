@@ -1,104 +1,59 @@
-import boundares from '~/assets/images/services/boundaries.jpg';
-import landPlot from '~/assets/images/services/landPlot.jpg';
-import geo from '~/assets/images/services/geo.jpg';
-import techPlan from '~/assets/images/services/techPlan.jpg';
-import zouit from '~/assets/images/services/zouit.jpg';
-
-import selected from '~/assets/images/services/landPlot/selected.jpg';
-import forming from '~/assets/images/services/landPlot/forming.jpg';
-import chapter from '~/assets/images/services/landPlot/chapter.jpg';
-import redistribution from '~/assets/images/services/landPlot/redistribution.jpg';
-import correction from '~/assets/images/services/landPlot/correction.jpg';
-
-import techPlanHouse from '~/assets/images/services/techPlan/tachplanhouse.jpg';
-import act from '~/assets/images/services/techPlan/act.webp';
-import garage from '~/assets/images/services/techPlan/garage.jpg';
-import techPlanConstruction from '~/assets/images/services/techPlan/techPlanConstruction.jpg';
-import techPlanFlat from '~/assets/images/services/techPlan/techplanflat.jpg';
-import techPlanPart from '~/assets/images/services/techPlan/techPlanPart.jpg';
-
-import topo from '~/assets/images/services/geo/topo.webp';
-import gaz from '~/assets/images/services/geo/gaz.jpg';
-import ispol from '~/assets/images/services/geo/ispol.jpg';
-import points from '~/assets/images/services/geo/removing points.jpg';
-
-import protectZone from '~/assets/images/services/ZOUIT/protectZone.jpg';
-import saveZone from '~/assets/images/services/ZOUIT/saveZone.jpg';
-
-import humanKad1 from '~/assets/images/content/kad-content-1.png';
-import humanKad2 from '~/assets/images/content/kad-content-2.png';
-import humanKad3 from '~/assets/images/content/kad-content-3.png';
-import humanKad4 from '~/assets/images/content/kad-content-4.png';
-import humanKad5 from '~/assets/images/content/kad-content-5.png';
-import humanKad6 from '~/assets/images/content/kad-content-6.png';
-import humanKad7 from '~/assets/images/content/kad-content-7.png';
-import humanKad8 from '~/assets/images/content/kad-content-8.png';
-import humanKad9 from '~/assets/images/content/kad-content-9.png';
-
 interface ServiceItem {
   id: number;
-  img?: string;
   label: string;
 }
 
 interface ServiceTypeItem {
   id: number;
-  img?: string;
   label: string;
 }
 
 export const itemsForStepperServiceI: ServiceItem[] = [
   {
     id: 1,
-    img: landPlot,
     label: 'Кадастровые работы в отношении земельного участка',
   },
   {
     id: 2,
-    img: techPlan,
     label: 'Кадастровые работы в отношении дома, здания',
   },
   {
     id: 3,
-    img: zouit,
     label: 'ЗОУИТ',
   },
   {
     id: 4,
-    img: geo,
     label: 'Геодезические работы',
+  },
+  {
+    id: 4,
+    label: 'Консультация',
   },
 ];
 
 const itemsForLandPlot: ServiceTypeItem[] = [
   {
     id: 1,
-    img: correction,
     label: 'Уточнение границ земельного участка',
   },
   {
     id: 2,
-    img: redistribution,
     label: 'Перераспределение земельного участка',
   },
   {
     id: 3,
-    img: chapter,
     label: 'Раздел земельных участков',
   },
   {
     id: 4,
-    img: chapter,
     label: 'Объединение земельных участков',
   },
   {
     id: 5,
-    img: forming,
     label: 'Формирование земельного участка',
   },
   {
     id: 6,
-    img: selected,
     label: 'Выдел земельной доли',
   },
 ];
@@ -106,32 +61,26 @@ const itemsForLandPlot: ServiceTypeItem[] = [
 const itemsForTechPlan: ServiceTypeItem[] = [
   {
     id: 1,
-    img: techPlanHouse,
     label: 'Технический план дома',
   },
   {
     id: 2,
-    img: techPlanFlat,
     label: 'Технический план квартиры',
   },
   {
     id: 3,
-    img: techPlanPart,
     label: 'Технический план части здания',
   },
   {
     id: 4,
-    img: techPlanConstruction,
     label: 'Технический план сооружения',
   },
   {
     id: 5,
-    img: garage,
     label: 'Оформление гаража',
   },
   {
     id: 6,
-    img: act,
     label: 'Акт обследования',
   },
 ];
@@ -139,22 +88,18 @@ const itemsForTechPlan: ServiceTypeItem[] = [
 const itemsForGeo: ServiceTypeItem[] = [
   {
     id: 1,
-    img: topo,
     label: 'Топографическая съемка',
   },
   {
     id: 2,
-    img: ispol,
     label: 'Исполнительная съемка',
   },
   {
     id: 3,
-    img: points,
     label: 'Вынос точек в натуру',
   },
   {
     id: 4,
-    img: gaz,
     label: 'Бесплатная газификация',
   },
 ];
@@ -162,12 +107,10 @@ const itemsForGeo: ServiceTypeItem[] = [
 const itemsForZOUIT: ServiceTypeItem[] = [
   {
     id: 1,
-    img: protectZone,
     label: 'Санитарно-защитные зоны',
   },
   {
     id: 2,
-    img: saveZone,
     label: 'Охранные зоны',
   },
 ];

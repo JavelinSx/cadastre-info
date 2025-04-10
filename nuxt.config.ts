@@ -2,15 +2,13 @@
 // @ts-nocheck
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  // Явно указываем режим приложения - SPA (Single Page Application)
+  // Переключаем на клиентский рендеринг (SPA режим)
   ssr: false,
   modules: ['@pinia/nuxt', '@nuxt/ui', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@vueuse/motion/nuxt'],
   css: ['~/assets/css/main.css'],
   typescript: {
     strict: true,
   },
-
-  // Настройки UI будут определены автоматически модулем @nuxt/ui
 
   runtimeConfig: {
     // Приватные ключи доступны только на сервере
@@ -37,43 +35,23 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
-    // Правильный базовый путь
-    // В режиме разработки используем пустой baseURL, для продакшена - /cadastre-info/
+    // Базовый путь установлен в корень для Vercel
     baseURL: '/',
-
-    // Важно: задаем директорию для сборки ассетов без префикса baseURL
-    buildAssetsDir: '/_nuxt/',
   },
 
+  // Для Vercel не нужен специальный пресет, используем default
   nitro: {
-    preset: 'github-pages',
-    // Обновлено: явный путь для ассетов
-    output: {
-      publicDir: '.output/public',
-    },
-    prerender: {
-      crawlLinks: true,
-      routes: ['/', '/services', '/information', '/blog', '/about', '/contacts', '/request'],
-      ignore: [
-        // Ignore routes that contain a wildcard
-        /__nuxt/,
-      ],
-    },
+    preset: 'vercel',
   },
 
-  // Важные настройки для сборки на GitHub Pages
+  // Не требуются специальные правила маршрутов для Vercel
   routeRules: {
-    '/**': { prerender: true },
+    // При необходимости можно добавить правила кэширования
   },
 
-  // Отключаем генерацию страниц на сервере
-  generate: {
-    routes: ['/'],
-  },
-
+  // Оптимизация для лучшей производительности
   experimental: {
     payloadExtraction: false,
-    inlineSSRStyles: false,
   },
 
   compatibilityDate: '2025-04-06',
