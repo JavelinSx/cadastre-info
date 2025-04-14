@@ -1,7 +1,7 @@
 <template>
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-800 text-white py-8 px-8">
         <div class="container-custom">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div v-motion :initial="{ opacity: 0, x: -20 }"
                     :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }">
                     <h3 class="text-lg font-semibold mb-4">КадастроИнфо</h3>

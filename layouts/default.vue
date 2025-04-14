@@ -1,12 +1,12 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <AppHeader class="pl-4 pr-4" />
+        <AppHeader />
 
         <main class="flex-grow">
             <slot />
         </main>
 
-        <AppFooter class="pl-4 pr-4" />
+        <AppFooter />
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-white shadow-sm sticky top-0 z-100">
+    <header class="bg-white shadow-sm sticky top-0 z-100 px-4">
         <div class="container-custom py-4">
             <div class="flex justify-between items-center">
                 <NuxtLink to="/" class="flex items-center space-x-2 transition-transform duration-300 hover:scale-105">
@@ -7,7 +7,7 @@
                     <span class="text-xl font-bold text-gray-900">КадастроИнфо</span>
                 </NuxtLink>
 
-                <nav class="hidden md:flex space-x-8">
+                <nav class="hidden lg:flex space-x-8">
                     <NuxtLink v-for="(link, index) in navLinks" :key="link.path" :to="link.path"
                         class="text-gray-700 hover:text-primary-600 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full"
                         :class="{ 'animate-slideFromTop delay-100': true, [`delay-${index * 100}`]: true }">
@@ -15,14 +15,14 @@
                     </NuxtLink>
                 </nav>
 
-                <div class="hidden md:block">
+                <div class="hidden lg:block">
                     <UButton to="/request" color="primary" variant="solid" icon="i-heroicons-document-text"
                         class="text-gray-800 transition-all duration-300 hover:shadow-lg hover:scale-105" size="xl">
                         Оставить заявку
                     </UButton>
                 </div>
 
-                <div class="md:hidden">
+                <div class="lg:hidden">
                     <UButton :icon="isMenuOpen ? 'i-heroicons-x-mark' : 'i-heroicons-bars-3'" variant="ghost"
                         @click="toggleMenu" class="transition-transform duration-300 hover:scale-110 z-50 relative" />
                 </div>
@@ -31,7 +31,7 @@
 
         <!-- Улучшенное мобильное меню с полноэкранной анимацией -->
         <div v-if="isMenuOpen"
-            class="fixed inset-0 bg-white z-40 md:hidden flex flex-col overflow-y-auto pt-20 pb-6 px-6">
+            class="fixed inset-0 bg-white z-40 lg:hidden flex flex-col max-h-[700px] pt-14 pb-6 px-6 shadow-2xl">
             <div class="flex flex-col space-y-4">
                 <NuxtLink v-for="(link, index) in navLinks" :key="link.path" :to="link.path"
                     class="flex items-center py-3 px-4 rounded-lg text-gray-800 hover:bg-primary-50 transition-all duration-300 transform"
