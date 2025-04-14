@@ -2,7 +2,7 @@
     <div class="h-full">
         <!-- Форма заявки -->
         <div
-            class="bg-white rounded-lg md:shadow-md p-6 mb-8 md:sticky top-24 z-10 before:absolute before:inset-0 before:bg-white before:rounded-lg before:-z-10 border border-green-500 md:border-none">
+            class="bg-white rounded-lg md:shadow-md p-6 mb-8 top-24 z-10 before:absolute before:inset-0 before:bg-white before:rounded-lg before:-z-10 border border-green-500 md:border-none">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">Заказать услугу</h3>
             <p class="text-gray-600 mb-4">
                 Оставьте заявку, и наш специалист свяжется с вами для консультации и расчета стоимости

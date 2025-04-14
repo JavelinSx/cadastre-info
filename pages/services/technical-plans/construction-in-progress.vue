@@ -105,15 +105,15 @@
 
 <script setup lang="ts">
 import ServiceSidebar from '~/components/services/ServiceSidebar.vue';
-import { technicalPlanPartBuildingData } from '~/utils/data/services/technical-plans/part-building';
+import { technicalPlanConstructionInProgressData } from '~/utils/data/services/technical-plans/construction-in-progress';
 
 definePageMeta({
-    title: 'Технический план части здания - Услуги кадастрового инженера',
-    description: 'Профессиональная подготовка технического плана части здания для учета и регистрации прав на отдельные части объектов недвижимости'
+    title: 'Технический план объекта незавершенного строительства - Услуги кадастрового инженера',
+    description: 'Профессиональная подготовка технического плана ОНС для постановки на кадастровый учет и регистрации права на объект незавершенного строительства'
 });
 
 // Используем данные напрямую
-const serviceData = ref(technicalPlanPartBuildingData);
+const serviceData = ref(technicalPlanConstructionInProgressData);
 </script>
 
 <style scoped>

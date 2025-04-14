@@ -124,6 +124,11 @@ export const technicalPlansData: ServiceData = {
           link: '/services/technical-plans/construction',
         },
         {
+          icon: 'i-heroicons-wrench-screwdriver',
+          text: 'Технический план ОНС',
+          link: '/services/technical-plans/construction-in-progress',
+        },
+        {
           icon: 'i-heroicons-square-3-stack-3d',
           text: 'Технический план части здания',
           link: '/services/technical-plans/part-building',
