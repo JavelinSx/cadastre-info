@@ -1,11 +1,11 @@
 <template>
     <div>
-        <HeroSection class="pl-4 pr-4" />
-        <ServicesSection class="pl-4 pr-4" />
-        <FeaturesSection class="pl-4 pr-4" />
-        <InfoSection class="pl-4 pr-4" />
-        <TestimonialsSection class="pl-4 pr-4" />
-        <CtaSection class="pl-4 pr-4" />
+        <HeroSection class="lg:px-12 px-4" />
+        <ServicesSection class="lg:px-12 px-4" />
+        <FeaturesSection class="lg:px-12 px-4" />
+        <InfoSection class="lg:px-12 px-4" />
+        <TestimonialsSection class="lg:px-12 px-4" />
+        <CtaSection class="lg:px-12 px-4" />
     </div>
 </template>
 

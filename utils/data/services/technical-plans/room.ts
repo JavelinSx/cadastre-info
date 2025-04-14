@@ -1,4 +1,4 @@
-import { ServiceData } from '~/utils/types/service-types';
+import type { ServiceData } from '~/utils/types/service-types';
 
 export const technicalPlanRoomData: ServiceData = {
   title: 'Технический план помещения',

@@ -9,7 +9,7 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div v-for="(service, index) in services" :key="service.id" class="service-card"
+                <div v-for="(service, index) in servicesBaseList" :key="service.id" class="service-card"
                     :style="`--index: ${index + 1}`">
                     <div
                         class="card h-full flex flex-col bg-white rounded-lg border border-gray-100 p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary-200">
@@ -37,50 +37,7 @@
 </template>
 
 <script setup lang="ts">
-const services = [
-    {
-        id: 1,
-        icon: 'i-heroicons-map',
-        title: 'Межевание земельных участков',
-        description: 'Точное определение границ участка с закреплением на местности и юридическое оформление документации.',
-        link: '/services/land-survey'
-    },
-    {
-        id: 2,
-        icon: 'i-heroicons-home-modern',
-        title: 'Технические планы',
-        description: 'Подготовка технических планов зданий, сооружений, помещений, объектов незавершенного строительства.',
-        link: '/services/technical-plans'
-    },
-    {
-        id: 3,
-        icon: 'i-heroicons-document-check',
-        title: 'Постановка на кадастровый учет',
-        description: 'Полное сопровождение процедуры постановки объектов недвижимости на государственный кадастровый учет.',
-        link: '/services/cadastral-register'
-    },
-    {
-        id: 4,
-        icon: 'i-heroicons-document-text',
-        title: 'Оформление прав собственности',
-        description: 'Помощь в регистрации прав собственности на объекты недвижимости в Росреестре.',
-        link: '/services/property-rights'
-    },
-    {
-        id: 5,
-        icon: 'i-heroicons-pencil-square',
-        title: 'Исправление кадастровых ошибок',
-        description: 'Выявление и исправление ошибок в сведениях государственного кадастра недвижимости.',
-        link: '/services/error-correction'
-    },
-    {
-        id: 6,
-        icon: 'i-heroicons-document-magnifying-glass',
-        title: 'Кадастровые выписки и справки',
-        description: 'Получение актуальных сведений из Единого государственного реестра недвижимости (ЕГРН).',
-        link: '/services/cadastral-excerpts'
-    }
-];
+import { servicesBaseList } from '~/utils/data/services';
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div v-motion :initial="{ opacity: 0, x: -20 }"
                     :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }">
-                    <h3 class="text-lg font-semibold mb-4">КадастроИнфо</h3>
+                    <h3 class="text-lg font-semibold mb-4">ПлесКад</h3>
                     <p class="text-gray-300">
                         Информационный портал о кадастровой деятельности.
                         Правовая и юридическая информация о кадастровых услугах.
@@ -61,7 +61,7 @@
 
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p class="animate-fadeIn" style="animation-delay: 800ms">&copy; {{ new Date().getFullYear() }}
-                    КадастроИнфо. Все права защищены.</p>
+                    ПлесКад. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -83,9 +83,9 @@ const infoLinks = [
 ];
 
 const contactItems = [
-    { icon: 'i-heroicons-phone', text: '+7 (123) 456-78-90' },
-    { icon: 'i-heroicons-envelope', text: 'info@cadastre-info.ru' },
-    { icon: 'i-heroicons-map-pin', text: 'г. Москва, ул. Примерная, д. 123' }
+    { icon: 'i-heroicons-phone', text: '+7 (911) 873-99-97' },
+    { icon: 'i-heroicons-envelope', text: 'zuew23@mail.ru' },
+    { icon: 'i-heroicons-map-pin', text: 'рп. Плесецк, ул. Кооперативная, д. 4, 1 этаж' }
 ];
 </script>
 
