@@ -59,10 +59,24 @@ export interface ServiceSidebarTypes {
   items: ServiceSidebarItem[];
 }
 
+// Тип для преимуществ
+export interface ServiceSidebarAdvantages {
+  title: string;
+  items: string[];
+}
+
+// Тип для необходимых документов
+export interface ServiceSidebarDocuments {
+  title: string;
+  items: string[];
+}
+
 // Тип для бокового меню
 export interface ServiceSidebar {
-  types: ServiceSidebarTypes;
-  results: ServiceSidebarResults;
+  types?: ServiceSidebarTypes;
+  results?: ServiceSidebarResults;
+  advantages?: ServiceSidebarAdvantages;
+  documents?: ServiceSidebarDocuments;
 }
 
 // Тип для кнопок в секции CTA

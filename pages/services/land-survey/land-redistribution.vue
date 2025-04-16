@@ -32,15 +32,15 @@
 
 <script setup lang="ts">
 import { ServiceSidebar, ServiceHeader, ServiceMainInfo, ServiceFAQ, ServiceCTA } from '~/components/services';
-import { technicalPlanConstructionInProgressData } from '~/utils/data/services/technical-plans/construction-in-progress';
+import { landRedistributionData } from '~/utils/data/services/land-survey/land-redistribution';
 
 definePageMeta({
-    title: 'Технический план объекта незавершенного строительства - Услуги кадастрового инженера',
-    description: 'Профессиональная подготовка технического плана ОНС для постановки на кадастровый учет и регистрации права на объект незавершенного строительства'
+    title: 'Перераспределение земельного участка - Кадастровые услуги',
+    description: 'Профессиональные услуги по перераспределению земельных участков. Полное юридическое сопровождение, подготовка и согласование документов, выгодные условия.'
 });
 
 // Используем данные из файла
-const serviceData = ref(technicalPlanConstructionInProgressData);
+const serviceData = ref(landRedistributionData);
 </script>
 
 <style scoped>

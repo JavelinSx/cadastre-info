@@ -32,15 +32,15 @@
 
 <script setup lang="ts">
 import { ServiceSidebar, ServiceHeader, ServiceMainInfo, ServiceFAQ, ServiceCTA } from '~/components/services';
-import { landSurveyData } from '~/utils/data/services/land-survey/land-survey';
+import { landAllocationData } from '~/utils/data/services/land-survey/land-allocation';
 
 definePageMeta({
-  title: 'Кадастровые работы в отношении земельных участков - Услуги кадастрового инженера',
-  description: 'Профессиональные кадастровые работы в отношении земельных участков: межевание, уточнение границ, раздел, объединение, перераспределение и другие виды кадастровых услуг.'
+  title: 'Выдел земельной доли - Кадастровые услуги',
+  description: 'Профессиональные услуги по выделу земельной доли из земель сельскохозяйственного назначения с оформлением всей необходимой документации'
 });
 
 // Используем данные из файла
-const serviceData = ref(landSurveyData);
+const serviceData = ref(landAllocationData);
 </script>
 
 <style scoped>
