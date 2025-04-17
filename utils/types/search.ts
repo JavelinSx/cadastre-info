@@ -1,7 +1,7 @@
 // types/search.ts
 
 // Интерфейс для элемента результатов поиска
-export interface SearchResultItem {
+export interface SearchResultItemType {
   title: string; // Заголовок результата
   description: string; // Описание
   url: string; // Ссылка для перехода
@@ -11,7 +11,7 @@ export interface SearchResultItem {
 
 // Интерфейс для сгруппированных результатов
 export interface GroupedResults {
-  [category: string]: SearchResultItem[];
+  [category: string]: SearchResultItemType[];
 }
 
 // Интерфейс для настроек поиска

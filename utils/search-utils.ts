@@ -1,14 +1,12 @@
 // utils/search-utils.ts
-import type { SearchResultItem, GroupedResults } from '~/utils/types/search';
+import type { SearchResultItemType, GroupedResults } from '~/utils/types/search';
 
-/**
- * Выполняет поиск по базе данных
- * @param database База данных для поиска
- * @param query Поисковый запрос
- * @param maxResults Максимальное количество результатов
- * @returns Массив результатов поиска
- */
-export function performSearch(database: SearchResultItem[], query: string, maxResults = 20): SearchResultItem[] {
+// Выполняет поиск по базе данных
+export function performSearch(
+  database: SearchResultItemType[],
+  query: string,
+  maxResults = 20
+): SearchResultItemType[] {
   if (!query || query.trim() === '') {
     return [];
   }
@@ -62,12 +60,8 @@ export function performSearch(database: SearchResultItem[], query: string, maxRe
   return results;
 }
 
-/**
- * Группирует результаты поиска по категориям
- * @param results Результаты поиска
- * @returns Сгруппированные результаты
- */
-export function groupResultsByCategory(results: SearchResultItem[]): GroupedResults {
+// Группирует результаты поиска по категориям
+export function groupResultsByCategory(results: SearchResultItemType[]): GroupedResults {
   return results.reduce<GroupedResults>((grouped, item) => {
     if (!grouped[item.category]) {
       grouped[item.category] = [];
@@ -77,12 +71,7 @@ export function groupResultsByCategory(results: SearchResultItem[]): GroupedResu
   }, {});
 }
 
-/**
- * Подсвечивает найденный текст в строке
- * @param text Исходный текст
- * @param query Поисковый запрос
- * @returns HTML-разметка с подсвеченным текстом
- */
+// Подсвечивает найденный текст в строке
 export function highlightText(text: string, query: string): string {
   if (!query || query.trim() === '') {
     return text;
@@ -99,18 +88,13 @@ export function highlightText(text: string, query: string): string {
 
   queryWords.forEach((word) => {
     const regex = new RegExp(`(${word})`, 'gi');
-    highlightedText = highlightedText.replace(regex, '<mark class="bg-yellow-100 rounded-sm px-0.5">$1</mark>');
+    highlightedText = highlightedText.replace(regex, '<mark>$1</mark>');
   });
 
   return highlightedText;
 }
 
-/**
- * Создает функцию с задержкой вызова (debounce)
- * @param func Исходная функция
- * @param wait Время задержки в мс
- * @returns Функция с задержкой
- */
+// Создает функцию с задержкой вызова (debounce)
 export function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -128,10 +112,7 @@ export function debounce<T extends (...args: any[]) => any>(func: T, wait: numbe
   };
 }
 
-/**
- * Сохраняет историю поиска в локальное хранилище
- * @param query Поисковый запрос
- */
+// Сохраняет историю поиска в локальное хранилище
 export function saveSearchHistory(query: string): void {
   if (!query || query.trim() === '') {
     return;
@@ -139,7 +120,7 @@ export function saveSearchHistory(query: string): void {
 
   const normalizedQuery = query.trim();
 
-  if (process.client) {
+  if (import.meta.client) {
     try {
       // Получаем текущую историю поиска
       const history = JSON.parse(localStorage.getItem('searchHistory') || '[]') as string[];
@@ -161,12 +142,9 @@ export function saveSearchHistory(query: string): void {
   }
 }
 
-/**
- * Получает историю поиска из локального хранилища
- * @returns Массив последних поисковых запросов
- */
+// Получает историю поиска из локального хранилища
 export function getSearchHistory(): string[] {
-  if (process.client) {
+  if (import.meta.client) {
     try {
       return JSON.parse(localStorage.getItem('searchHistory') || '[]') as string[];
     } catch (error) {
@@ -177,11 +155,9 @@ export function getSearchHistory(): string[] {
   return [];
 }
 
-/**
- * Очищает историю поиска
- */
+// Очищает историю поиска
 export function clearSearchHistory(): void {
-  if (process.client) {
+  if (import.meta.client) {
     try {
       localStorage.removeItem('searchHistory');
     } catch (error) {

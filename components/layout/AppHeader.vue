@@ -20,11 +20,18 @@
                     </nav>
                 </div>
 
-                <!-- Кнопка бургер-меню справа на мобильных -->
-                <div class="lg:hidden">
-                    <UButton :icon="isMenuOpen ? 'i-heroicons-x-mark' : 'i-heroicons-bars-3'" variant="ghost"
-                        @click="toggleMenu"
-                        class="transition-all duration-600 hover:bg-primary-500 hover:text-white hover:cursor-pointer z-50 relative" />
+                <!-- Поиск и кнопка бургер-меню справа -->
+                <div class="flex items-center space-x-3">
+                    <!-- Компонент поиска -->
+                    <SearchDialog button-text="Поиск" input-placeholder="Введите запрос..."
+                        :show-keyboard-hints="true" />
+
+                    <!-- Кнопка бургер-меню на мобильных -->
+                    <div class="lg:hidden">
+                        <UButton :icon="isMenuOpen ? 'i-heroicons-x-mark' : 'i-heroicons-bars-3'" variant="ghost"
+                            @click="toggleMenu"
+                            class="transition-all duration-600 hover:bg-primary-500 hover:text-white hover:cursor-pointer z-50 relative" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,37 +48,42 @@
                     <span class="text-lg font-medium">{{ link.title }}</span>
                 </NuxtLink>
 
-                <div class="border-t border-gray-300 my-4 animate-fadeIn"
-                    :style="`animation-delay: ${navLinks.length * 100}ms`"></div>
+                <!-- Поиск в мобильном меню -->
+                <div class="text-primary-600 border border-primary-400 bg-inherit mt-2 py-3 px-4 text-center font-medium transition-all duration-600 animate-fadeInUp shadow-md hover:bg-primary-500 hover:text-white rounded-lg flex items-center justify-center"
+                    :style="`animation-delay: ${(navLinks.length + 1) * 100}ms`" @click="openMobileSearch">
+                    <UIcon name="i-heroicons-magnifying-glass" class="w-6 h-6 mr-3" />
+                    <span class="text-lg font-medium">Поиск</span>
+                </div>
 
+                <!-- Кнопка оставить заявку -->
                 <UButton to="/request" block icon="i-heroicons-document-text"
                     class="text-primary-600 border border-primary-400 bg-inherit mt-2 py-3 text-center font-medium transition-all duration-600 animate-fadeInUp shadow-md hover:bg-primary-500 hover:text-white"
-                    :style="`animation-delay: ${(navLinks.length + 1) * 100}ms`" @click="closeMenu">
+                    :style="`animation-delay: ${(navLinks.length + 2) * 100}ms`" @click="closeMenu">
                     Оставить заявку
                 </UButton>
 
                 <div class="mt-auto pt-8 flex justify-center space-x-6 animate-fadeIn"
-                    :style="`animation-delay: ${(navLinks.length + 2) * 100}ms`">
+                    :style="`animation-delay: ${(navLinks.length + 3) * 100}ms`">
                     <a href="tel:+71234567890" class="relative flex justify-center items-center w-10 h-10 rounded-full 
-           text-primary-600 overflow-hidden group">
+             text-primary-600 overflow-hidden group">
                         <span class="absolute bottom-0 left-0 w-full h-0 bg-primary-600 
-                transition-all duration-500 group-hover:h-full z-0"></span>
+                  transition-all duration-500 group-hover:h-full z-0"></span>
                         <UIcon name="i-heroicons-phone" class="w-6 h-6 relative z-10 transition-colors duration-500 
-                                          group-hover:text-white" />
+                                            group-hover:text-white" />
                     </a>
                     <a href="mailto:info@cadastre-info.ru" class="relative flex justify-center items-center w-10 h-10 rounded-full 
-                    text-primary-600 overflow-hidden group">
+                      text-primary-600 overflow-hidden group">
                         <span class="absolute bottom-0 left-0 w-full h-0 bg-primary-600 
-                        transition-all duration-500 group-hover:h-full z-0"></span>
+                          transition-all duration-500 group-hover:h-full z-0"></span>
                         <UIcon name="i-heroicons-envelope" class="w-6 h-6 relative z-10 transition-colors duration-500 
-                        group-hover:text-white" />
+                          group-hover:text-white" />
                     </a>
                     <a href="#" class="relative flex justify-center items-center w-10 h-10 rounded-full 
-                    text-primary-600 overflow-hidden group">
+                      text-primary-600 overflow-hidden group">
                         <span class="absolute bottom-0 left-0 w-full h-0 bg-primary-600 
-                        transition-all duration-500 group-hover:h-full z-0"></span>
+                          transition-all duration-500 group-hover:h-full z-0"></span>
                         <UIcon name="i-heroicons-map-pin" class="w-6 h-6 relative z-10 transition-colors duration-500 
-                        group-hover:text-white" />
+                          group-hover:text-white" />
                     </a>
                 </div>
             </div>
@@ -80,7 +92,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import { useSearch } from '~/composables/useSearch';
+import SearchDialog from '../search/SearchDialog.vue';
+
 const isMenuOpen = ref(false);
+const { openSearch } = useSearch();
 
 const navLinks = [
     { title: 'Главная', path: '/' },
@@ -121,6 +138,17 @@ const toggleMenu = () => {
 const closeMenu = () => {
     isMenuOpen.value = false;
     document.body.style.overflow = '';
+};
+
+// Открытие поиска из мобильного меню
+const openMobileSearch = () => {
+    // Сначала закрываем меню
+    closeMenu();
+
+    // Затем с небольшой задержкой открываем поиск
+    setTimeout(() => {
+        openSearch();
+    }, 300);
 };
 
 // Очистка при размонтировании компонента
