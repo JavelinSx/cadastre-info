@@ -1,12 +1,12 @@
 <template>
   <div>
     <!-- Кнопка открытия поиска -->
-    <SearchButton :text="buttonText" :icon="buttonIcon" :hide-text="hideButtonText" @click="openSearch" />
+    <SearchButton :text="buttonText" :hide-text="hideButtonText" @click="openSearch" />
 
     <!-- Модальное окно поиска с Teleport -->
     <Teleport to="body">
       <div v-if="isOpen"
-        class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-start justify-center pt-20 sm:pt-32"
+        class="fixed inset-0 z-50 backdrop-blur bg-white/30 flex items-start justify-center pt-20 sm:pt-32"
         @click="handleClickOutside" @keydown.esc="closeSearch">
         <div class="bg-white w-full max-w-2xl max-h-[70vh] rounded-lg shadow-xl overflow-hidden flex flex-col"
           ref="dialogRef" @click.stop>

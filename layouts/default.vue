@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen flex flex-col">
         <AppHeader />
-
+        <BreadcrumbMain />
         <main class="flex-grow">
             <slot />
         </main>
@@ -13,4 +13,5 @@
 <script setup lang="ts">
 import AppHeader from '~/components/layout/AppHeader.vue';
 import AppFooter from '~/components/layout/AppFooter.vue';
+import BreadcrumbMain from '~/components/breadcrumb/BreadcrumbMain.vue';
 </script>

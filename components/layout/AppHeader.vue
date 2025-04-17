@@ -6,14 +6,14 @@
                 <NuxtLink to="/"
                     class="flex-shrink-0 flex items-center space-x-2 transition-transform duration-300 hover:scale-105">
                     <UIcon name="i-heroicons-map" class="text-primary-600 w-8 h-8" />
-                    <span class="text-xl font-bold text-gray-900">ПлесКад</span>
+                    <span class="text-xl font-bold text-primary-600">ПлесКад</span>
                 </NuxtLink>
 
                 <!-- Навигация по центру -->
                 <div class="flex-1 flex justify-center">
                     <nav class="hidden lg:flex space-x-6">
                         <NuxtLink v-for="(link, index) in navLinks" :key="link.path" :to="link.path"
-                            class="text-gray-700 hover:text-primary-600 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full"
+                            class="text-primary-600 hover:text-gray-600 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-600 after:transition-all after:duration-300 hover:after:w-full"
                             :class="{ 'animate-slideFromTop delay-100': true, [`delay-${index * 100}`]: true }">
                             {{ link.title }}
                         </NuxtLink>
@@ -23,7 +23,7 @@
                 <!-- Поиск и кнопка бургер-меню справа -->
                 <div class="flex items-center space-x-3">
                     <!-- Компонент поиска -->
-                    <SearchDialog button-text="Поиск" input-placeholder="Введите запрос..."
+                    <SearchDialog button-text="Поиск по сайту" input-placeholder="Введите запрос..."
                         :show-keyboard-hints="true" />
 
                     <!-- Кнопка бургер-меню на мобильных -->
@@ -49,11 +49,12 @@
                 </NuxtLink>
 
                 <!-- Поиск в мобильном меню -->
-                <div class="text-primary-600 border border-primary-400 bg-inherit mt-2 py-3 px-4 text-center font-medium transition-all duration-600 animate-fadeInUp shadow-md hover:bg-primary-500 hover:text-white rounded-lg flex items-center justify-center"
+                <UButton icon="i-heroicons-magnifying-glass"
+                    class="justify-center text-primary-600 border border-primary-400 bg-inherit mt-2 py-3 text-center font-medium transition-all duration-600 animate-fadeInUp shadow-md hover:bg-primary-500 hover:text-white"
                     :style="`animation-delay: ${(navLinks.length + 1) * 100}ms`" @click="openMobileSearch">
-                    <UIcon name="i-heroicons-magnifying-glass" class="w-6 h-6 mr-3" />
-                    <span class="text-lg font-medium">Поиск</span>
-                </div>
+                    <!-- <UIcon name="i-heroicons-magnifying-glass" class="w-6 h-6 mr-3" /> -->
+                    Поиск по сайту
+                </UButton>
 
                 <!-- Кнопка оставить заявку -->
                 <UButton to="/request" block icon="i-heroicons-document-text"
