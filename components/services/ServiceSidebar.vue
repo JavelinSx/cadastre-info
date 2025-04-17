@@ -17,7 +17,10 @@
                 Или позвоните нам по телефону
             </p>
             <p class="text-lg font-medium text-center text-primary-600">
-                +7 (123) 456-78-90
+                +7 (911) 873-99-97
+            </p>
+            <p class="text-lg font-medium text-center text-primary-600">
+                +7 (960) 006-68-40
             </p>
         </div>
 

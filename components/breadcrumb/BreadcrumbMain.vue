@@ -1,7 +1,7 @@
 <template>
     <nav v-if="shouldShow" aria-label="Хлебные крошки" class="py-3 px-4" :class="wrapperClass">
         <div :class="containerClass">
-            <ol class="flex flex-wrap items-center space-x-1 text-sm text-gray-600" :class="listClass">
+            <ol class="flex flex-col lg:flex-wrap lg:flex-row space-x-1 text-sm text-gray-600" :class="listClass">
                 <BreadcrumbItemMain v-for="(crumb, index) in breadcrumbs" :key="index" :item="crumb"
                     :is-first="index === 0" :show-icon="showIcons" :home-icon-only="homeIconOnly" :divider="divider"
                     :item-class="itemClass" :link-class="linkClass" :last-item-class="lastItemClass"

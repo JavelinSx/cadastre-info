@@ -1,15 +1,16 @@
 <template>
     <footer class="bg-gray-800 text-white py-8 px-8">
         <div class="container-custom">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div v-motion :initial="{ opacity: 0, x: -20 }"
-                    :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }">
-                    <h3 class="text-lg font-semibold mb-4">ПлесКад</h3>
-                    <p class="text-gray-300">
-                        Информационный портал о кадастровой деятельности.
-                        Правовая и юридическая информация о кадастровых услугах.
-                    </p>
-                </div>
+            <div v-motion :initial="{ opacity: 0, x: -20 }" :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }"
+                class="flex flex-col items-center justify-center mb-8">
+                <h3 class="text-2xl font-semibold mb-4">ПлесКад</h3>
+                <p class="text-gray-300 text-xl text-center">
+                    Информационный портал о кадастровой деятельности.
+                    Правовая и юридическая информация о кадастровых услугах.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
 
                 <div v-motion :initial="{ opacity: 0, y: 20 }"
                     :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 200 } }">
