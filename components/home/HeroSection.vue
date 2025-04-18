@@ -28,17 +28,27 @@
                     <div
                         class="w-full h-80 bg-white/10 rounded-lg backdrop-blur-sm relative overflow-hidden border border-white/20">
                         <!-- Стилизованная кадастровая карта с анимацией -->
-                        <div class="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0.5 opacity-70">
-                            <div v-for="i in 36" :key="i" class="bg-white/20 rounded transition-all duration-1000"
+                        <NuxtImg src="/images/map-ples.png" class="absolute inset-0 w-full h-full object-cover ">
+                        </NuxtImg>
+                        <div class="absolute inset-0 grid grid-cols-6 grid-rows-6">
+                            <div v-for="i in 36" :key="i"
+                                class="bg-white/20  transition-all duration-1000 border border-primary-500"
                                 :class="{ 'animate-pulse': i % 7 === 0 }" :style="`animation-delay: ${i * 100}ms`">
+
                             </div>
                         </div>
                         <!-- Маркеры на карте -->
-                        <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                        <div v-for="(point, index) in coordinates" :key="index" :class="point.color"
+                            class="absolute w-3 h-3 rounded-full animate-ping" :style="{
+                                top: point.top,
+                                left: point.left,
+                                animationDelay: '0s' // мгновенная анимация пинга
+                            }"></div>
+                        <!-- <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
                         <div class="absolute top-2/3 right-1/4 w-3 h-3 bg-blue-500 rounded-full animate-ping"
                             style="animation-delay: 1s"></div>
                         <div class="absolute bottom-1/4 left-1/2 w-3 h-3 bg-green-500 rounded-full animate-ping"
-                            style="animation-delay: 1.5s"></div>
+                            style="animation-delay: 1.5s"></div> -->
                     </div>
                 </div>
             </div>
@@ -47,6 +57,69 @@
 </template>
 
 <script setup lang="ts">
-// Импортируем необходимые зависимости
-import { useMotion } from '@vueuse/motion'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+interface PointCoordinate {
+    top: string;
+    left: string;
+    color: string;
+}
+
+// Создаем пустой массив точек
+const coordinates = ref<PointCoordinate[]>([]);
+let addPointTimer: number | null = null;
+let changePointsTimer: number | null = null;
+
+// Генерирует случайную точку
+const generateRandomPoint = (): PointCoordinate => {
+    const colors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-amber-500', 'bg-cyan-500', 'bg-fuchsia-500'];
+    const top = Math.floor(Math.random() * 90) + 5; // от 5% до 95%
+    const left = Math.floor(Math.random() * 90) + 5; // от 5% до 95%
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        color: colors[Math.floor(Math.random() * colors.length)]
+    };
+};
+
+// Функция для последовательного добавления точек
+const addPointsSequentially = (currentIndex = 0, maxPoints = 6) => {
+    if (currentIndex < maxPoints) {
+        // Добавляем новую точку
+        coordinates.value.push(generateRandomPoint());
+
+        // Планируем добавление следующей точки через 500 мс
+        addPointTimer = window.setTimeout(() => {
+            addPointsSequentially(currentIndex + 1, maxPoints);
+        }, 200);
+    } else {
+        // Когда все точки добавлены, планируем их полную замену через 3 секунды
+        changePointsTimer = window.setTimeout(changeAllPoints, 1500);
+    }
+};
+
+// Функция для одновременной замены всех точек
+const changeAllPoints = () => {
+    // Сначала очищаем массив точек
+    coordinates.value = [];
+
+    // Запускаем последовательное добавление точек
+    addPointsSequentially();
+};
+
+onMounted(() => {
+    // Начинаем добавление точек
+    addPointsSequentially();
+});
+
+onBeforeUnmount(() => {
+    // Очищаем все таймеры при размонтировании компонента
+    if (addPointTimer !== null) {
+        window.clearTimeout(addPointTimer);
+    }
+    if (changePointsTimer !== null) {
+        window.clearTimeout(changePointsTimer);
+    }
+});
 </script>

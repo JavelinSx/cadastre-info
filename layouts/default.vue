@@ -2,7 +2,7 @@
     <div class="min-h-screen flex flex-col">
         <AppHeader />
         <BreadcrumbMain />
-        <main class="flex-grow">
+        <main class="flex-grow overflow-y-hidden">
             <slot />
         </main>
 
