@@ -1,35 +1,91 @@
 <template>
-  <div class="py-16 text-gray-800 min-h-[calc(100vh-200px)] flex items-center">
+  <div class="py-16 bg-gray-50 text-gray-800">
     <div class="container-custom">
-      <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-8" v-motion :initial="{ opacity: 0, y: 20 }"
-          :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }">
-          <div class="mb-6 flex justify-center">
-            <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center animate-pulse-slow">
-              <UIcon name="i-heroicons-wrench-screwdriver" class="w-12 h-12 text-primary-600" />
+      <!-- Заголовок страницы -->
+      <InfoHeader :title="data.title" :description="data.description" :introText="data.introText" />
+
+      <!-- Основное содержимое -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Основная колонка с законами -->
+        <div class="md:col-span-2">
+          <!-- Категории законов -->
+          <div v-for="(category, categoryIndex) in data.lawCategories" :key="categoryIndex"
+            class="bg-white rounded-lg shadow-md p-8 mb-8" v-motion :initial="{ opacity: 0, x: -30 }"
+            :enter="{ opacity: 1, x: 0, transition: { duration: 600, delay: 200 + categoryIndex * 100 } }">
+
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">{{ category.title }}</h2>
+
+            <div class="space-y-8">
+              <div v-for="(law, lawIndex) in category.laws" :key="lawIndex"
+                class="border-b border-gray-100 pb-6 last:border-b-0"
+                :class="{ 'bg-primary-50 p-4 rounded-lg border border-primary-100': law.isMain }">
+                <div class="flex items-start mb-2">
+                  <h3 class="text-lg font-semibold text-gray-800">
+                    {{ law.name }}
+                    <span v-if="law.isUpdate"
+                      class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      Новое
+                    </span>
+                  </h3>
+                </div>
+                <p class="text-primary-700 font-medium mb-2">{{ law.title }}</p>
+                <p class="text-gray-600 mb-3">{{ law.description }}</p>
+                <NuxtLink :to="law.link" target="_blank" rel="noopener noreferrer"
+                  class="text-primary-600 hover:text-primary-800 inline-flex items-center">
+                  Подробнее о законе
+                  <UIcon name="i-heroicons-arrow-right" class="ml-1 w-5 h-5" />
+                </NuxtLink>
+              </div>
             </div>
           </div>
 
-          <h1 class="text-3xl font-bold mb-4 animate-fadeIn" style="animation-delay: 300ms">Законодательство</h1>
+          <!-- Часто задаваемые вопросы о законодательстве -->
+          <div class="bg-white rounded-lg shadow-md p-8" v-motion :initial="{ opacity: 0, y: 20 }"
+            :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 600 } }">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Часто задаваемые вопросы о законодательстве</h2>
 
-          <p class="text-xl text-gray-600 mb-6 animate-fadeIn" style="animation-delay: 500ms">
-            Мы активно работаем над созданием этой страницы. Скоро здесь появится полезная информация о кадастровых
-            услугах.
-          </p>
-
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeIn"
-            style="animation-delay: 700ms">
-            <UButton to="/" color="primary" variant="solid"
-              class="transition-all duration-300 hover:shadow-lg hover:scale-105">
-              <UIcon name="i-heroicons-home" class="mr-2" />
-              Вернуться на главную
-            </UButton>
-
-            <UButton to="/request" color="gray" variant="outline" class="transition-all duration-300 hover:shadow-md">
-              <UIcon name="i-heroicons-document-text" class="mr-2" />
-              Оставить заявку
-            </UButton>
+            <div class="space-y-6">
+              <div v-for="(faqItem, faqIndex) in data.faq" :key="faqIndex"
+                class="border-b border-gray-100 pb-6 last:border-b-0">
+                <h3 class="text-lg font-medium mb-3 text-gray-800">{{ faqItem.question }}</h3>
+                <p class="text-gray-600">{{ faqItem.answer }}</p>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- Боковая панель -->
+        <div class="w-full" v-motion :initial="{ opacity: 0, x: 30 }"
+          :enter="{ opacity: 1, x: 0, transition: { duration: 600, delay: 300 } }">
+          <InfoSidebar title="Разделы информации" :links="sidebarLinks">
+            <!-- Полезные ресурсы -->
+            <div v-for="(resourceCategory, resourceIndex) in data.usefulResources" :key="resourceIndex"
+              class="bg-white rounded-lg shadow-md p-6 mb-8 border border-green-500 md:border-none">
+              <h3 class="text-xl font-semibold mb-4 text-gray-800">{{ resourceCategory.title }}</h3>
+              <ul class="space-y-3">
+                <li v-for="(link, linkIndex) in resourceCategory.links" :key="linkIndex">
+                  <a :href="link.url" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-700 hover:text-primary-600 flex items-start group">
+                    <UIcon :name="link.icon" class="w-5 h-5 text-primary-600 mr-2 mt-1 flex-shrink-0" />
+                    <span class="group-hover:underline decoration-dotted">{{ link.text }}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Помощь с вопросами законодательства -->
+            <div class="bg-primary-50 rounded-lg shadow-md p-6 border border-primary-100">
+              <h3 class="text-xl font-semibold mb-3 text-gray-800">Нужна помощь с вопросами законодательства?</h3>
+              <p class="text-gray-600 mb-4">
+                Наши специалисты помогут разобраться в сложных юридических вопросах и подготовить необходимые документы
+              </p>
+              <UButton to="/request" color="primary" variant="solid" block
+                class="transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+                <UIcon name="i-heroicons-document-text" class="mr-2" />
+                Получить консультацию
+              </UButton>
+            </div>
+          </InfoSidebar>
         </div>
       </div>
     </div>
@@ -37,45 +93,36 @@
 </template>
 
 <script setup lang="ts">
+import { lawsData } from '~/utils/data/information';
+import { informationData } from '~/utils/data/information';
+import InfoHeader from '~/components/information/InfoHeader.vue';
+import InfoSidebar from '~/components/information/InfoSidebar.vue';
+
+const data = ref(lawsData);
+const sidebarLinks = ref(informationData.sidebarLinks);
+
 definePageMeta({
-  title: 'Законодательство - Страница в разработке',
-  description: 'Актуальная информация о законодательстве в сфере кадастра и недвижимости'
+  title: 'Законодательство в сфере кадастра и недвижимости',
+  description: 'Актуальная информация о законодательстве в сфере кадастра и недвижимости, федеральных законах и подзаконных актах.'
 });
 </script>
 
 <style scoped>
-.animate-pulse-slow {
-  animation: pulse 3s infinite;
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
-
-  100% {
-    transform: scale(1);
+@media (min-width: 640px) {
+  .container-custom {
+    padding: 0 2rem;
   }
 }
 
-.animate-fadeIn {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@media (min-width: 1024px) {
+  .container-custom {
+    padding: 0 4rem;
   }
 }
 </style>
