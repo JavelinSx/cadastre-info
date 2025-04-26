@@ -1,6 +1,7 @@
 <template>
-    <section class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 overflow-hidden">
-        <div class="container-custom">
+    <section class="py-16 overflow-hidden relative min-h-[500px] text-white" ref="heroSection">
+        <!-- Hero content container -->
+        <div class="container-custom relative z-10">
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div v-motion :initial="{ opacity: 0, y: 50 }"
                     :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 100 } }">
@@ -9,7 +10,7 @@
                         Предоставляем полную правовую информацию о кадастровой деятельности и помогаем с оформлением
                         всех необходимых документов.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 text-white">
+                    <div class="flex flex-col sm:flex-row gap-4">
                         <UButton to="/request" variant="solid" color="primary"
                             class="text-gray-800 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
                             size="xl">
@@ -24,31 +25,25 @@
                 </div>
                 <div class="hidden md:block relative" v-motion :initial="{ opacity: 0, x: 100 }"
                     :enter="{ opacity: 1, x: 0, transition: { duration: 800, delay: 400 } }">
-                    <!-- Добавим визуальный элемент кадастровой карты с анимацией -->
-                    <div
-                        class="w-full h-80 bg-white/10 rounded-lg backdrop-blur-sm relative overflow-hidden border border-white/20">
+                    <!-- Визуальный элемент -->
+                    <NuxtImg src="/images/map-ples.png"
+                        class="absolute inset-0 w-full h-full object-cover rounded-lg" />
+                    <div class="w-full h-80 bg-white/10 rounded-lg relative overflow-hidden border border-primary-500">
                         <!-- Стилизованная кадастровая карта с анимацией -->
-                        <NuxtImg src="/images/map-ples.png" class="absolute inset-0 w-full h-full object-cover ">
-                        </NuxtImg>
+
                         <div class="absolute inset-0 grid grid-cols-6 grid-rows-6">
                             <div v-for="i in 36" :key="i"
-                                class="bg-white/20  transition-all duration-1000 border border-primary-500"
+                                class="bg-white/20 transition-all duration-1000 border border-primary-500"
                                 :class="{ 'animate-pulse': i % 7 === 0 }" :style="`animation-delay: ${i * 100}ms`">
-
                             </div>
                         </div>
+
                         <!-- Маркеры на карте -->
-                        <div v-for="(point, index) in coordinates" :key="index" :class="point.color"
-                            class="absolute w-3 h-3 rounded-full animate-ping" :style="{
-                                top: point.top,
-                                left: point.left,
-                                animationDelay: '0s' // мгновенная анимация пинга
-                            }"></div>
-                        <!-- <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                        <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
                         <div class="absolute top-2/3 right-1/4 w-3 h-3 bg-blue-500 rounded-full animate-ping"
                             style="animation-delay: 1s"></div>
                         <div class="absolute bottom-1/4 left-1/2 w-3 h-3 bg-green-500 rounded-full animate-ping"
-                            style="animation-delay: 1.5s"></div> -->
+                            style="animation-delay: 1.5s"></div>
                     </div>
                 </div>
             </div>
@@ -57,69 +52,84 @@
 </template>
 
 <script setup lang="ts">
+import { useMotion } from '@vueuse/motion';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-interface PointCoordinate {
-    top: string;
-    left: string;
-    color: string;
-}
+const heroSection = ref(null);
+let vantaEffect = null;
 
-// Создаем пустой массив точек
-const coordinates = ref<PointCoordinate[]>([]);
-let addPointTimer: number | null = null;
-let changePointsTimer: number | null = null;
+onMounted(async () => {
+    // Динамическая загрузка скриптов
+    try {
+        // Загрузка Three.js
+        if (!window.THREE) {
+            const threeScript = document.createElement('script');
+            threeScript.src = 'https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js';
+            document.head.appendChild(threeScript);
 
-// Генерирует случайную точку
-const generateRandomPoint = (): PointCoordinate => {
-    const colors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-amber-500', 'bg-cyan-500', 'bg-fuchsia-500'];
-    const top = Math.floor(Math.random() * 90) + 5; // от 5% до 95%
-    const left = Math.floor(Math.random() * 90) + 5; // от 5% до 95%
+            await new Promise((resolve) => {
+                threeScript.onload = resolve;
+            });
+        }
 
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        color: colors[Math.floor(Math.random() * colors.length)]
-    };
-};
+        // Загрузка Vanta.NET
+        if (!window.VANTA) {
+            const vantaScript = document.createElement('script');
+            vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js';
+            document.head.appendChild(vantaScript);
 
-// Функция для последовательного добавления точек
-const addPointsSequentially = (currentIndex = 0, maxPoints = 6) => {
-    if (currentIndex < maxPoints) {
-        // Добавляем новую точку
-        coordinates.value.push(generateRandomPoint());
+            await new Promise((resolve) => {
+                vantaScript.onload = resolve;
+            });
+        }
 
-        // Планируем добавление следующей точки через 500 мс
-        addPointTimer = window.setTimeout(() => {
-            addPointsSequentially(currentIndex + 1, maxPoints);
-        }, 200);
-    } else {
-        // Когда все точки добавлены, планируем их полную замену через 3 секунды
-        changePointsTimer = window.setTimeout(changeAllPoints, 1500);
+        // Инициализация Vanta эффекта
+        if (window.VANTA) {
+            vantaEffect = window.VANTA.NET({
+                el: heroSection.value,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 500,
+                minWidth: 200,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x10b981, // Primary color
+                backgroundColor: 0x0f172a, // Dark background
+                points: 12,
+                maxDistance: 21.00,
+                spacing: 17.00
+            });
+        }
+    } catch (error) {
+        console.error('Failed to load Vanta effect:', error);
     }
-};
-
-// Функция для одновременной замены всех точек
-const changeAllPoints = () => {
-    // Сначала очищаем массив точек
-    coordinates.value = [];
-
-    // Запускаем последовательное добавление точек
-    addPointsSequentially();
-};
-
-onMounted(() => {
-    // Начинаем добавление точек
-    addPointsSequentially();
 });
 
+// Обязательно уничтожить эффект при размонтировании компонента
 onBeforeUnmount(() => {
-    // Очищаем все таймеры при размонтировании компонента
-    if (addPointTimer !== null) {
-        window.clearTimeout(addPointTimer);
-    }
-    if (changePointsTimer !== null) {
-        window.clearTimeout(changePointsTimer);
+    if (vantaEffect) {
+        vantaEffect.destroy();
     }
 });
 </script>
+
+<style scoped>
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container-custom {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-custom {
+        padding: 0 4rem;
+    }
+}
+</style>

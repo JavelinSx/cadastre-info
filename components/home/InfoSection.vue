@@ -23,9 +23,9 @@
                 <div class="bg-gray-100 p-8 rounded-lg">
                     <h3 class="text-2xl font-semibold mb-4">Последние обновления законодательства</h3>
                     <div class="space-y-6">
-                        <div v-for="update in latestUpdates" :key="update.id"
+                        <div v-for="(update, index) in lawsData.lawCategories[0].laws" :key="index"
                             class="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
-                            <p class="text-sm text-gray-500 mb-1">{{ update.date }}</p>
+                            <p class="text-sm text-gray-500 mb-1">{{ update.name }}</p>
                             <h4 class="text-lg font-medium mb-2">{{ update.title }}</h4>
                             <p class="text-gray-600">{{ update.description }}</p>
                             <NuxtLink :to="update.link"
@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import { lawsData } from '~/utils/data/information';
 // Информационные пункты
 const infoItems = [
     {
