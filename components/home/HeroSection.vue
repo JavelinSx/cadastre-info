@@ -91,14 +91,14 @@ onMounted(async () => {
                 touchControls: true,
                 gyroControls: false,
                 minHeight: 500,
-                minWidth: 200,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x10b981, // Primary color
-                backgroundColor: 0x0f172a, // Dark background
-                points: 12,
-                maxDistance: 21.00,
-                spacing: 17.00
+                minWidth: 500,
+                scale: 1.0,
+                scaleMobile: 0.50,
+                color: 0x00c950, // Primary color
+                backgroundColor: 0x1e2939, // Dark background
+                points: 30,
+                maxDistance: 20.00,
+                spacing: 30.00
             });
         }
     } catch (error) {
