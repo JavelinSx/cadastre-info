@@ -54,6 +54,7 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+const { isMobile } = useDevice()
 const heroSection = ref(null);
 let vantaEffect = null;
 
@@ -81,7 +82,7 @@ onMounted(async () => {
                 vantaScript.onload = resolve;
             });
         }
-
+        console.log(isMobile.value)
         // Инициализация Vanta эффекта
         if (window.VANTA) {
             vantaEffect = window.VANTA.NET({
@@ -95,9 +96,9 @@ onMounted(async () => {
                 scaleMobile: 0.50,
                 color: 0x00c950, // Primary color
                 backgroundColor: 0x1e2939, // Dark background
-                points: 20,
-                maxDistance: 20.00,
-                spacing: 20.00
+                points: isMobile.value ? 10 : 20,
+                maxDistance: isMobile.value ? 10 : 20,
+                spacing: isMobile.value ? 10 : 20
             });
         }
     } catch (error) {

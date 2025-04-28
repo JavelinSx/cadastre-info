@@ -109,7 +109,7 @@ const vParallax = {
         const isMobileDevice = window.innerWidth < 768;
 
         // // Если это мобильное устройство и параллакс отключен для мобильных, не добавляем обработчик
-        // if (isMobileDevice && mobileDisabled) return;
+        if (isMobileDevice && mobileDisabled) return;
 
         // Функция обработки скролла
         const handleScroll = () => {
