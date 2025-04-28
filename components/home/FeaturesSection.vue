@@ -26,9 +26,11 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div v-for="(feature, index) in features" :key="feature.id" class="feature-item"
                     :style="`--delay: ${100 + index * 75}ms`">
-                    <div class="feature-card h-full rounded-xl overflow-hidden backdrop-blur-sm border border-white/30
-                  bg-gradient-to-br from-white/80 to-white/60 shadow-sm
-                  transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="feature-card h-full rounded-xl overflow-hidden border border-gray-200
+         bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1" :class="{
+            'backdrop-blur-sm bg-gradient-to-br from-white/80 to-white/60 border-white/30': !isMobile,
+            'bg-white': isMobile
+        }">
                         <!-- Верхняя часть карточки с иконкой и цветным акцентом -->
                         <div class="pt-6 pb-4 px-6 relative">
                             <!-- Цветной акцент сверху карточки -->
