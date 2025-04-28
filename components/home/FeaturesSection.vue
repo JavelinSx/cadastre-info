@@ -3,9 +3,10 @@
         <!-- Фоновое изображение с параллакс-эффектом -->
         <div class="absolute inset-0 parallax-wrapper">
             <div ref="parallaxRef" class="parallax-container absolute inset-0 z-10">
-                <img src="/images/cadastral-map-bg.png" alt="Кадастровая карта"
+                <img alt="Кадастровая карта"
+                    :src="isMobile ? '/images/cadastral-map-bg-mobile.png' : '/images/cadastral-map-bg.png'"
                     class="w-full h-full object-cover opacity-30"
-                    :class="{ 'object-center': !isMobile, 'object-top': isMobile }" />
+                    :class="{ 'object-center': !isMobile, 'object-left': isMobile }" />
             </div>
         </div>
 

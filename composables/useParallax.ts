@@ -10,7 +10,7 @@ export function useParallax(options = {}) {
     speed: 0.7,
     direction: 'down',
     mobileDisabled: true,
-    mobileBreakpoint: 768,
+    mobileBreakpoint: 767,
   };
 
   // Объединяем опции
