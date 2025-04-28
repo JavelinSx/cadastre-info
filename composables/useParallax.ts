@@ -1,73 +1,78 @@
 // composables/useParallax.ts
-import type { DirectiveBinding, ObjectDirective } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
-interface ParallaxOptions {
-  speed?: number;
-  direction?: 'up' | 'down';
-  mobileDisabled?: boolean;
-}
+export function useParallax(options = {}) {
+  const el = ref(null);
+  const isActive = ref(false);
 
-export function useParallax() {
-  const vParallax: ObjectDirective = {
-    mounted(el: HTMLElement, binding: DirectiveBinding<ParallaxOptions>) {
-      const options = binding.value || {};
-      const speed = options.speed || 0.5;
-      const direction = options.direction || 'down';
-      const mobileDisabled = options.mobileDisabled || false;
-
-      // Проверяем, мобильное ли устройство
-      const isMobileDevice = window.innerWidth < 768;
-
-      // Если это мобильное устройство и параллакс отключен для мобильных, не добавляем обработчик
-      if (isMobileDevice && mobileDisabled) return;
-
-      // Функция обработки скролла
-      const handleScroll = () => {
-        const scrollPosition = window.scrollY;
-        const rect = el.closest('section')?.getBoundingClientRect();
-
-        if (!rect) return;
-
-        const offsetTop = rect.top;
-        const sectionHeight = rect.height;
-
-        // Вычисляем смещение
-        let translateY = 0;
-
-        if (offsetTop <= 0) {
-          // Секция уже прокручена
-          translateY = Math.abs(offsetTop) * speed;
-        }
-
-        // Ограничиваем максимальное смещение
-        const maxTranslate = sectionHeight * 0.4;
-        translateY = Math.min(translateY, maxTranslate);
-
-        // Применяем направление
-        if (direction === 'up') {
-          translateY = -translateY;
-        }
-
-        el.style.transform = `translateY(${translateY}px)`;
-      };
-
-      // Инициализация
-      handleScroll();
-      window.addEventListener('scroll', handleScroll);
-      window.addEventListener('resize', handleScroll);
-
-      // Сохраняем обработчики для удаления
-      el._parallaxScrollHandler = handleScroll;
-    },
-
-    unmounted(el: HTMLElement) {
-      // Удаляем обработчики при размонтировании компонента
-      if (el._parallaxScrollHandler) {
-        window.removeEventListener('scroll', el._parallaxScrollHandler);
-        window.removeEventListener('resize', el._parallaxScrollHandler);
-      }
-    },
+  // Значения по умолчанию
+  const defaultOptions = {
+    speed: 0.7,
+    direction: 'down',
+    mobileDisabled: true,
+    mobileBreakpoint: 768,
   };
 
-  return { vParallax };
+  // Объединяем опции
+  const config = { ...defaultOptions, ...options };
+
+  // Обработчик скролла
+  const handleScroll = () => {
+    if (!el.value || !isActive.value) return;
+
+    const scrollPosition = window.scrollY;
+    const element = el.value;
+    const section = element.closest('section');
+
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const offsetTop = rect.top;
+    const sectionHeight = rect.height;
+
+    // Расчет смещения
+    let translateY = 0;
+
+    if (offsetTop <= 0) {
+      translateY = Math.abs(offsetTop) * config.speed;
+    }
+
+    // Ограничение максимального смещения
+    const maxTranslate = sectionHeight * 0.6;
+    translateY = Math.min(translateY, maxTranslate);
+
+    // Направление параллакса
+    if (config.direction === 'up') {
+      translateY = -translateY;
+    }
+
+    element.style.transform = `translateY(${translateY}px)`;
+  };
+
+  // Инициализация
+  onMounted(() => {
+    if (import.meta.client) {
+      const isMobileDevice = window.innerWidth < config.mobileBreakpoint;
+
+      // Если мобильное устройство и параллакс отключен для мобильных
+      if (!(isMobileDevice && config.mobileDisabled)) {
+        isActive.value = true;
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+
+        // Начальные настройки
+        setTimeout(handleScroll, 100);
+      }
+    }
+  });
+
+  // Очистка
+  onUnmounted(() => {
+    if (import.meta.client && isActive.value) {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    }
+  });
+
+  return { el };
 }
