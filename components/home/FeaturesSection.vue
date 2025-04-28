@@ -3,8 +3,7 @@
         <!-- Фоновое изображение с параллакс-эффектом через vue-parallax-directive -->
         <div class="absolute inset-0 parallax-wrapper">
             <div class="parallax-container absolute inset-0 z-10"
-                v-parallax="{ speed: 0.3, direction: 'down', mobileDisabled: true }"
-                :style="{ height: isMobile ? '100%' : '120%', top: isMobile ? '0' : '-10%' }">
+                v-parallax="{ speed: 0.3, direction: 'down', mobileDisabled: true }">
                 <img src="/images/cadastral-map-bg.png" alt="Кадастровая карта"
                     class="w-full h-full object-cover opacity-30">
             </div>
