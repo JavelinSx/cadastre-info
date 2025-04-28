@@ -54,7 +54,6 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-
 const heroSection = ref(null);
 let vantaEffect = null;
 
@@ -92,13 +91,13 @@ onMounted(async () => {
                 gyroControls: false,
                 minHeight: 500,
                 minWidth: 500,
-                scale: 1.0,
+                scale: 0.5,
                 scaleMobile: 0.50,
                 color: 0x00c950, // Primary color
                 backgroundColor: 0x1e2939, // Dark background
-                points: 30,
+                points: 20,
                 maxDistance: 20.00,
-                spacing: 30.00
+                spacing: 20.00
             });
         }
     } catch (error) {
