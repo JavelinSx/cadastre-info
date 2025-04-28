@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-white text-gray-600">
+    <section class="py-16 bg-white text-gray-600 flex justify-center">
         <div class="container-custom">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Наши услуги</h2>

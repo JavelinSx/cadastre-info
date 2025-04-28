@@ -26,10 +26,10 @@
 
         <!-- Виды услуг -->
         <div v-if="serviceTypes && serviceTypes.title"
-            class="bg-white rounded-lg md:shadow-md p-6 mb-8 border border-green-500 md:border-none">
+            class="bg-white rounded-lg md:shadow-md p-6 mb-4 border border-green-500 md:border-none">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">{{ serviceTypes.title }}</h3>
 
-            <ul class="space-y-3">
+            <ul class="space-y-1">
                 <li v-for="(type, typeIndex) in serviceTypes.items" :key="typeIndex"
                     class="flex items-center p-3 rounded-md transition-all duration-300 hover:bg-gray-50">
 
@@ -46,7 +46,7 @@
             class="bg-white rounded-lg md:shadow-md p-6 mb-8 border border-green-500 md:border-none">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">{{ advantages.title }}</h3>
 
-            <ul class="space-y-3">
+            <ul class="space-y-1">
                 <li v-for="(advantage, advIndex) in advantages.items" :key="advIndex"
                     class="flex items-start p-2 rounded-md">
                     <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
@@ -60,7 +60,7 @@
             class="bg-white rounded-lg md:shadow-md p-6 mb-8 border border-green-500 md:border-none">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">{{ results.title }}</h3>
 
-            <ul class="space-y-3 text-gray-600">
+            <ul class="space-y-1 text-gray-600">
                 <li v-for="(item, itemIndex) in results.items" :key="itemIndex" class="flex items-start p-2">
                     <UIcon name="i-heroicons-document-text" class="w-5 h-5 text-primary-600 mr-2 mt-1" />
                     <span>{{ item }}</span>

@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-primary-600 text-white relative overflow-hidden">
+    <section class="py-16 bg-primary-600 text-white relative overflow-hidden flex justify-center">
         <!-- Анимированный фоновый эффект -->
         <div class="absolute inset-0 z-0">
             <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-primary-500 opacity-30 animate-float"

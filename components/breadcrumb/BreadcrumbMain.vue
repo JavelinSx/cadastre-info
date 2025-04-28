@@ -1,7 +1,8 @@
 <template>
-    <nav v-if="shouldShow" aria-label="Хлебные крошки" class="py-3 px-4" :class="wrapperClass">
+    <nav v-if="shouldShow && !isMobile" aria-label="Хлебные крошки"
+        class="py-3 px-4 flex justify-center sticky top-[64px] z-100" :class="wrapperClass">
         <div :class="containerClass">
-            <ol class="flex flex-col lg:flex-wrap lg:flex-row space-x-1 text-sm text-gray-600" :class="listClass">
+            <ol class="flex flex-col lg:flex-wrap lg:flex-row space-x-4 text-sm text-primary-500" :class="listClass">
                 <BreadcrumbItemMain v-for="(crumb, index) in breadcrumbs" :key="index" :item="crumb"
                     :is-first="index === 0" :show-icon="showIcons" :home-icon-only="homeIconOnly" :divider="divider"
                     :item-class="itemClass" :link-class="linkClass" :last-item-class="lastItemClass"
@@ -21,9 +22,8 @@ import {
     defaultExcludedRoutes,
     defaultRouteNameMap
 } from '~/utils/breadcrumb-utils'
-
 import BreadcrumbItemMain from './BreadcrumbItemMain.vue'
-
+const { isMobile } = useDevice()
 const props = defineProps({
     /**
      * Показывать ли иконки в крошках
@@ -55,7 +55,7 @@ const props = defineProps({
      */
     divider: {
         type: String,
-        default: 'i-heroicons-chevron-right'
+        default: 'i-heroicons-chevron-left'
     },
 
     /**

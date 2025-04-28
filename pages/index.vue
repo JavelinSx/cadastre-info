@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <HeroSection class="lg:px-12 px-4" />
         <ServicesSection class="lg:px-12 px-4" />
         <FeaturesSection class="lg:px-12 px-4" />

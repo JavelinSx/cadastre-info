@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-white shadow-sm sticky top-0 z-100">
+    <header class="bg-white shadow-sm sticky top-0 z-101 flex justify-center">
         <div class="container-custom py-4 px-4 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Логотип слева -->
@@ -39,7 +39,7 @@
         <!-- Мобильное меню -->
         <div v-if="isMenuOpen"
             class="fixed inset-0 bg-gray-100 z-40 lg:hidden flex flex-col overflow-y-auto pt-20 pb-6 px-6">
-            <div class="flex flex-col space-y-4">
+            <div class="flex flex-col space-y-2">
                 <NuxtLink v-for="(link, index) in navLinks" :key="link.path" :to="link.path"
                     class="flex items-center py-3 px-4 rounded-lg text-primary-600 transition-all duration-400 animate-fadeInUp hover:bg-primary-500 hover:text-white transform"
                     :class="{ 'animate-fadeInRight': isMenuOpen }" :style="`animation-delay: ${index * 100}ms`"
@@ -159,6 +159,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.container-custom {
+    width: 100%;
+}
+
 @keyframes slideFromTop {
     from {
         transform: translateY(-20px);

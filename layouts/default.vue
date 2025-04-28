@@ -1,8 +1,8 @@
 <template>
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col relative">
         <AppHeader />
         <BreadcrumbMain />
-        <main class="flex-grow overflow-y-hidden">
+        <main class="flex-grow overflow-y-hidden ">
             <slot />
         </main>
 

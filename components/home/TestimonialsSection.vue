@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 bg-gray-50 text-gray-600 overflow-hidden">
+    <section class="py-16 bg-gray-50 text-gray-600 overflow-hidden flex justify-center">
         <div class="container-custom">
             <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: 20 }"
                 :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }">

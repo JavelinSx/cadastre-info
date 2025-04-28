@@ -1,7 +1,7 @@
 <template>
-    <section class="py-16 overflow-hidden relative min-h-[500px] text-white" ref="heroSection">
+    <section class="py-16 overflow-hidden relative min-h-[500px] text-white flex justify-center" ref="heroSection">
         <!-- Hero content container -->
-        <div class="container-custom relative z-10">
+        <div class="container-custom relative z-10 max-w-[1366px]">
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div v-motion :initial="{ opacity: 0, y: 50 }"
                     :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 100 } }">

@@ -32,6 +32,7 @@ export const defaultRouteNameMap: Record<string, string> = {
   contacts: 'Контакты',
   request: 'Оставить заявку',
   'privacy-policy': 'Политика конфиденциальности',
+  glossary: 'Словарь',
 };
 
 // Карта иконок для разделов сайта

@@ -2,3 +2,7 @@
 @import "@nuxt/ui";
 @import "./animations.css";
 @import "./transitions.css";
+
+.container-custom {
+    max-width: 1366px;
+}

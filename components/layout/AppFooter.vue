@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-gray-800 text-white py-8 px-8">
+    <footer class="bg-gray-800 text-white py-8 px-8 flex justify-center">
         <div class="container-custom">
             <div v-motion :initial="{ opacity: 0, x: -20 }" :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }"
                 class="flex flex-col items-center justify-center mb-8">

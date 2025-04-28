@@ -22,6 +22,11 @@ export default defineNuxtConfig({
   },
 
   app: {
+    pageTransition: {
+      name: 'fade', // Имя класса для CSS transition
+      mode: 'out-in', // Режим перехода ('out-in', 'in-out', default: simultaneous)
+      duration: 300, // Продолжительность перехода (по умолчанию)
+    },
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
