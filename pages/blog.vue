@@ -1,5 +1,5 @@
 <template>
-  <div class="py-16 text-gray-800 min-h-[calc(100vh-200px)] flex items-center">
+  <div class="py-16 text-gray-800 min-h-[calc(100vh-200px)] flex items-center justify-center">
     <div class="container-custom">
       <div class="max-w-3xl mx-auto">
         <div class="bg-white rounded-lg shadow-md p-8" v-motion :initial="{ opacity: 0, y: 20 }"

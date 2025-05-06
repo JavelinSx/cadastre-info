@@ -26,7 +26,7 @@ export const itemsForStepperServiceI: ServiceItem[] = [
     label: 'Геодезические работы',
   },
   {
-    id: 4,
+    id: 5,
     label: 'Консультация',
   },
 ];
@@ -100,7 +100,15 @@ const itemsForGeo: ServiceTypeItem[] = [
   },
   {
     id: 4,
-    label: 'Бесплатная газификация',
+    label: 'Определение объемов',
+  },
+  {
+    id: 5,
+    label: 'Инженерно-геодезические изыскания',
+  },
+  {
+    id: 6,
+    label: 'Подготовка разбивочной основы',
   },
 ];
 
@@ -128,6 +136,7 @@ export const objectTypesData = [
 export const itemsServiceI: ServiceTypeItem[][] = [itemsForLandPlot, itemsForTechPlan, itemsForZOUIT, itemsForGeo];
 
 export const cityListI: string[] = [
+  'Другое',
   'Емца',
   'Верховский',
   'Бухалово',

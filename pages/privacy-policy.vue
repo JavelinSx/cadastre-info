@@ -1,31 +1,32 @@
 <template>
-  <div class="py-16 bg-gray-50 min-h-[calc(100vh-200px)] flex items-center">
+  <div class="py-16 bg-gray-50 min-h-[calc(100vh-200px)] flex items-center justify-center">
     <div class="container-custom">
       <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-8" v-motion 
-             :initial="{ opacity: 0, y: 20 }" 
-             :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }">
+        <div class="bg-white rounded-lg shadow-md p-8" v-motion :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }">
           <div class="mb-6 flex justify-center">
             <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center animate-pulse-slow">
               <UIcon name="i-heroicons-wrench-screwdriver" class="w-12 h-12 text-primary-600" />
             </div>
           </div>
-          
-          <h1 class="text-3xl font-bold mb-4 animate-fadeIn" style="animation-delay: 300ms">Политика конфиденциальности</h1>
-          
+
+          <h1 class="text-3xl font-bold mb-4 animate-fadeIn" style="animation-delay: 300ms">Политика конфиденциальности
+          </h1>
+
           <p class="text-xl text-gray-600 mb-6 animate-fadeIn" style="animation-delay: 500ms">
-            Мы активно работаем над созданием этой страницы. Скоро здесь появится полезная информация о кадастровых услугах.
+            Мы активно работаем над созданием этой страницы. Скоро здесь появится полезная информация о кадастровых
+            услугах.
           </p>
-          
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeIn" style="animation-delay: 700ms">
-            <UButton to="/" color="primary" variant="solid" 
-                    class="transition-all duration-300 hover:shadow-lg hover:scale-105">
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeIn"
+            style="animation-delay: 700ms">
+            <UButton to="/" color="primary" variant="solid"
+              class="transition-all duration-300 hover:shadow-lg hover:scale-105">
               <UIcon name="i-heroicons-home" class="mr-2" />
               Вернуться на главную
             </UButton>
-            
-            <UButton to="/request" color="gray" variant="outline" 
-                    class="transition-all duration-300 hover:shadow-md">
+
+            <UButton to="/request" color="gray" variant="outline" class="transition-all duration-300 hover:shadow-md">
               <UIcon name="i-heroicons-document-text" class="mr-2" />
               Оставить заявку
             </UButton>
@@ -49,9 +50,17 @@ definePageMeta({
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .animate-fadeIn {
@@ -60,11 +69,12 @@ definePageMeta({
 }
 
 @keyframes fadeIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(10px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0);
   }

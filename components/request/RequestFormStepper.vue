@@ -3,7 +3,6 @@
         <StepProgress ref="stepProgressRef" />
 
         <div class="mt-8">
-            <!-- Убираем режим "out-in", который может вызывать проблемы -->
             <transition name="fade" mode="out-in" @after-leave="scrollToTop">
                 <!-- Шаг 1: Выбор услуги -->
                 <div v-if="store.currentStep === 0" key="step-1" class="animate-scaleUp">

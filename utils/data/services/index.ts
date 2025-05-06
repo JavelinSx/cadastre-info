@@ -1,3 +1,5 @@
+// utils/data/services/index.ts
+
 import { technicalPlansData } from './technical-plans/technical-plans';
 import { technicalPlanConstructionData } from './technical-plans/construction';
 import { technicalPlanBuildingData } from './technical-plans/building';
@@ -5,6 +7,11 @@ import { technicalPlanHouseData } from './technical-plans/house';
 import { technicalPlanConstructionInProgressData } from './technical-plans/construction-in-progress';
 import { technicalPlanPartBuildingData } from './technical-plans/part-building';
 import { technicalPlanRoomData } from './technical-plans/room';
+
+// Импорт данных о геодезических услугах
+import { geodesicData } from './geodesic/geodesic-data';
+import { topographicSurveyData } from './geodesic/geodesic-topography';
+import { boundaryStakeoutData } from './geodesic/geodesic-boundary';
 
 const servicesBaseList = [
   {
@@ -79,4 +86,8 @@ export {
   technicalPlanConstructionInProgressData,
   technicalPlanPartBuildingData,
   technicalPlanRoomData,
+  // Экспорт данных о геодезических услугах
+  geodesicData,
+  topographicSurveyData,
+  boundaryStakeoutData,
 };

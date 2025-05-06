@@ -25,7 +25,7 @@
             <UButton v-else color="primary" variant="outline" @click="handleSubmit" :loading="store.isSubmitting"
                 :disabled="!store.formData.agreement"
                 class="transform transition-all duration-300 hover:shadow-lg hover:text-gray-100 relative overflow-hidden group"
-                :class="{ 'opacity-50 cursor-not-allowed': !store.formData.agreement }">
+                :class="{ 'opacity-50 cursor-not-allowed text-gray-500 ring-gray-500': !store.formData.agreement }">
                 <span class="relative z-10">Отправить заявку</span>
                 <span
                     class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"

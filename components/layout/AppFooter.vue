@@ -72,8 +72,8 @@
 const serviceLinks = [
     { text: 'Межевание земельных участков', url: '/services/land-survey' },
     { text: 'Технические планы', url: '/services/technical-plans' },
-    { text: 'Постановка на кадастровый учет', url: '/services/cadastral-register' },
-    { text: 'Регистрация прав собственности', url: '/services/property-rights' }
+    { text: 'Геодезия', url: '/services/geodesic' },
+    { text: 'Консультации', url: '/services/consultations' }
 ];
 
 const infoLinks = [
