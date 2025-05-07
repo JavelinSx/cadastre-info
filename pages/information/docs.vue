@@ -1,5 +1,5 @@
 <template>
-  <div class="py-16 bg-gray-50 text-gray-800">
+  <div class="py-16  text-gray-800">
     <div class="container-custom">
       <!-- Заголовок страницы -->
       <InfoHeader :title="data.title" :description="data.description" :introText="data.introText" />
@@ -24,7 +24,7 @@
                 <h3 class="text-xl font-semibold mb-3 text-gray-800">{{ document.title }}</h3>
                 <p class="text-gray-600 mb-4">{{ document.description }}</p>
 
-                <div class="bg-gray-50 rounded-lg p-6 mb-4">
+                <div class=" rounded-lg p-6 mb-4">
                   <h4 class="text-lg font-medium mb-3 text-gray-800">Необходимые документы:</h4>
                   <ul class="list-disc pl-6 mb-4 space-y-2 text-gray-600">
                     <li v-for="(req, reqIndex) in document.requiredDocuments" :key="reqIndex">
@@ -107,7 +107,7 @@
                     <div class="flex items-center justify-between">
                       <div class="text-sm text-gray-500">
                         <span class="inline-block px-2 py-1 bg-gray-100 rounded text-xs mr-2">{{ template.fileFormat
-                          }}</span>
+                        }}</span>
                         <span>{{ template.fileSize }}</span>
                       </div>
                       <NuxtLink :to="template.downloadLink"

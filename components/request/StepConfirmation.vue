@@ -2,7 +2,7 @@
     <div class="text-gray-800">
         <h3 class="text-xl font-semibold mb-4 animate-fadeIn">Подтверждение заявки</h3>
 
-        <div class="bg-gray-50 p-4 rounded-md mb-6 animate-scaleUp shadow-sm">
+        <div class=" p-4 rounded-md mb-6 animate-scaleUp shadow-sm">
             <div class="space-y-4">
                 <div class="animate-fadeIn" style="animation-delay: 100ms">
                     <h4 class="font-medium mb-3">Выбранная услуга</h4>
@@ -27,8 +27,7 @@
                         <p>
                             <span class="font-medium">Адрес:</span> {{ store.formData.address }}
                         </p>
-                        <p v-if="store.formData.additionalInfo"
-                            class="transition-all duration-300 hover:bg-gray-50 p-1 rounded">
+                        <p v-if="store.formData.additionalInfo" class="transition-all duration-300 hover: p-1 rounded">
                             <span class="font-medium">Дополнительная информация:</span><br>
                             {{ store.formData.additionalInfo }}
                         </p>

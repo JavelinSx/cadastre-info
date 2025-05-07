@@ -1,6 +1,6 @@
 <template>
     <nav v-if="shouldShow && !isMobile" aria-label="Хлебные крошки"
-        class="py-3 px-4 flex justify-center sticky top-[64px] z-100" :class="wrapperClass">
+        class="py-3 px-4 flex justify-center sticky top-[64px] z-100 bg-gray-50" :class="wrapperClass">
         <div :class="containerClass">
             <ol class="flex flex-col lg:flex-wrap lg:flex-row space-x-4 text-sm text-primary-500" :class="listClass">
                 <BreadcrumbItemMain v-for="(crumb, index) in breadcrumbs" :key="index" :item="crumb"
@@ -95,7 +95,7 @@ const props = defineProps({
      */
     wrapperClass: {
         type: String,
-        default: 'bg-gray-50'
+        default: ''
     },
 
     /**

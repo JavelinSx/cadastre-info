@@ -1,7 +1,7 @@
 <template>
     <div class="h-full">
         <!-- Форма заявки -->
-        <div class="rounded-lg md:shadow-md p-6 mb-8 top-24 z-10 border border-green-500 md:border-none">
+        <div class="rounded-lg md:shadow-md p-6 mb-8 top-24 z-10 border border-green-500 md:border-none bg-white">
             <h3 class="text-xl font-semibold mb-4 text-gray-800 text-center lg:text-left">Заказать услугу</h3>
             <p class="text-gray-600 mb-4 text-center lg:text-left">
                 Оставьте заявку, и наш специалист свяжется с вами для консультации и расчета стоимости
@@ -31,7 +31,7 @@
 
             <ul class="space-y-1">
                 <li v-for="(type, typeIndex) in serviceTypes.items" :key="typeIndex"
-                    class="flex items-center p-3 rounded-md transition-all duration-300 hover:bg-gray-50">
+                    class="flex items-center p-3 rounded-md transition-all duration-300 hover:">
 
                     <NuxtLink :to="type.link" class="text-gray-700 hover:text-primary-600 text-sm xl:text-base">
                         <UIcon :name="type.icon || 'i-heroicons-check-circle'" class="w-5 h-5 text-primary-600 mr-2" />

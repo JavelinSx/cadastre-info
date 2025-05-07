@@ -1,10 +1,10 @@
 <template>
-    <section class="py-16 bg-gray-50 text-gray-600 overflow-hidden flex justify-center">
+    <section class="py-16 bg-gray-800 text-gray-100 overflow-hidden flex justify-center">
         <div class="container-custom">
             <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: 20 }"
                 :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }">
                 <h2 class="text-3xl font-bold mb-4">Отзывы наших клиентов</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-100 max-w-3xl mx-auto">
                     Что говорят люди, которые уже воспользовались нашими услугами и информацией
                 </p>
             </div>

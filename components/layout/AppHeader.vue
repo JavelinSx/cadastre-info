@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-white shadow-sm sticky top-0 z-101 flex justify-center">
+    <header class="bg-gray-50 shadow-sm sticky top-0 z-101 flex justify-center">
         <div class="container-custom py-4 px-4 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Логотип слева -->

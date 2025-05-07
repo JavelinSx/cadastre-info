@@ -1,5 +1,5 @@
 <template>
-    <div class="py-12 bg-gray-50">
+    <div class="py-12 ">
         <div class="container-custom">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-8">

@@ -1,12 +1,12 @@
 <template>
-    <div class="py-16 bg-gray-50 text-gray-800">
+    <div class="py-16 bg-gray-200 text-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <!-- Заголовок страницы -->
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold mb-4 text-gray-800">
+                <h1 class="text-4xl font-bold mb-4 text-gray-700">
                     Наши услуги
                 </h1>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
                     Полный комплекс кадастровых работ и услуг по оформлению недвижимости
                     от квалифицированных специалистов
                 </p>

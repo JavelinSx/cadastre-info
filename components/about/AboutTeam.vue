@@ -4,7 +4,7 @@
         <h2 class="text-2xl font-semibold mb-6 text-gray-800">{{ title }}</h2>
         <div class="grid md:grid-cols-3 gap-8">
             <div v-for="(member, index) in team" :key="index"
-                class="bg-gray-50 p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+                class=" p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
                 <div class="mb-4 flex justify-center">
                     <div class="w-32 h-32 rounded-full bg-primary-100 flex items-center justify-center shadow-sm">
                         <UIcon name="i-heroicons-user" class="w-16 h-16 text-primary-600" />

@@ -1,7 +1,9 @@
 <template>
     <section class="py-16 overflow-hidden relative min-h-[500px] text-white flex justify-center" ref="heroSection">
         <!-- Hero content container -->
+        <VantaBG />
         <div class="container-custom relative z-10 max-w-[1366px]">
+
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div v-motion :initial="{ opacity: 0, y: 50 }"
                     :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 100 } }">
@@ -52,66 +54,11 @@
 </template>
 
 <script setup lang="ts">
-import { useMotion } from '@vueuse/motion';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-const { isMobile } = useDevice()
+import { ref } from 'vue';
+import VantaBG from '../ui/VantaBG.vue';
+
 const heroSection = ref(null);
-let vantaEffect = null;
 
-onMounted(async () => {
-    // Динамическая загрузка скриптов
-    try {
-        // Загрузка Three.js
-        if (!window.THREE) {
-            const threeScript = document.createElement('script');
-            threeScript.src = 'https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js';
-            document.head.appendChild(threeScript);
-
-            await new Promise((resolve) => {
-                threeScript.onload = resolve;
-            });
-        }
-
-        // Загрузка Vanta.NET
-        if (!window.VANTA) {
-            const vantaScript = document.createElement('script');
-            vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js';
-            document.head.appendChild(vantaScript);
-
-            await new Promise((resolve) => {
-                vantaScript.onload = resolve;
-            });
-        }
-        console.log(isMobile.value)
-        // Инициализация Vanta эффекта
-        if (window.VANTA) {
-            vantaEffect = window.VANTA.NET({
-                el: heroSection.value,
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 500,
-                minWidth: 500,
-                scale: 0.5,
-                scaleMobile: 0.50,
-                color: 0x00c950, // Primary color
-                backgroundColor: 0x1e2939, // Dark background
-                points: isMobile.value ? 10 : 20,
-                maxDistance: isMobile.value ? 10 : 20,
-                spacing: isMobile.value ? 10 : 20
-            });
-        }
-    } catch (error) {
-        console.error('Failed to load Vanta effect:', error);
-    }
-});
-
-// Обязательно уничтожить эффект при размонтировании компонента
-onBeforeUnmount(() => {
-    if (vantaEffect) {
-        vantaEffect.destroy();
-    }
-});
 </script>
 
 <style scoped>

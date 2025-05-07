@@ -1,5 +1,5 @@
 <template>
-    <div class="py-16 bg-gray-50 text-gray-800">
+    <div class="py-16  text-gray-800">
         <div class="container-custom">
             <!-- Заголовок страницы -->
             <ServiceHeader :title="serviceData.title" :description="serviceData.description" />

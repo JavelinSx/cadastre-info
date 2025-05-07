@@ -1,5 +1,5 @@
 <template>
-    <section class="py-16 text-gray-600 relative overflow-hidden min-h-[600px]">
+    <section class="py-16 text-gray-50 relative overflow-hidden min-h-[600px]">
         <!-- Фоновое изображение с параллакс-эффектом -->
         <div class="absolute inset-0 parallax-wrapper">
             <div ref="parallaxRef" class="parallax-container absolute inset-0 z-10">
@@ -11,12 +11,12 @@
         </div>
 
         <!-- Полупрозрачный оверлей для лучшей читабельности -->
-        <div class="absolute inset-0 bg-gray-50 bg-opacity-70"></div>
+        <div class="absolute inset-0  bg-opacity-70"></div>
 
         <div class="container-custom relative z-10">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">Почему выбирают нас</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-800 max-w-3xl mx-auto">
                     Профессиональные теоретические знания в области кадастровой деятельности, территориального
                     планирования, строительства и архитектуры, подкрепленные отточенной логикой и приумноженные на
                     огромный опыт работы в данных сферах деятельности.
@@ -71,7 +71,7 @@ const { isMobile } = useDevice();
 
 // Используем параллакс только для десктопных устройств
 const parallaxOptions = {
-    speed: 0.3,
+    speed: 1.0,
     direction: 'down',
     mobileDisabled: true
 };

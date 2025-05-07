@@ -8,7 +8,7 @@
             </p>
 
             <div class="grid md:grid-cols-3 gap-4 mt-6">
-                <div v-for="(stat, index) in stats" :key="index" class="bg-gray-50 p-4 rounded-lg text-center">
+                <div v-for="(stat, index) in stats" :key="index" class=" p-4 rounded-lg text-center">
                     <div class="text-3xl font-bold text-primary-600 mb-2">{{ stat.value }}</div>
                     <div class="text-gray-700">{{ stat.label }}</div>
                 </div>

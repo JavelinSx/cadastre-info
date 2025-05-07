@@ -1,5 +1,5 @@
 <template>
-  <div class="py-12 bg-gray-50 text-gray-800">
+  <div class="py-12  text-gray-800">
     <div class="container-custom">
       <!-- Заголовок страницы -->
       <AboutHeader :title="pageData.header.title" :description="pageData.header.description" />

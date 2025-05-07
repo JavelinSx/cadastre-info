@@ -1,45 +1,39 @@
 <template>
-  <div class="py-16 bg-gray-50 text-gray-800">
+  <div class="py-16  text-gray-800">
     <div class="container-custom">
       <!-- Заголовок страницы -->
-      <InfoHeader 
-        :title="data.title" 
-        :description="data.description"
-        :introText="data.introText"
-      />
+      <InfoHeader :title="data.title" :description="data.description" :introText="data.introText" />
 
       <!-- Основное содержимое -->
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Основная колонка с вопросами -->
         <div class="md:col-span-2">
           <!-- Категории вопросов -->
-          <div v-for="(category, categoryIndex) in data.categories" :key="categoryIndex" 
-               class="bg-white rounded-lg shadow-md p-8 mb-8" 
-               v-motion :initial="{ opacity: 0, x: -30 }"
-               :enter="{ opacity: 1, x: 0, transition: { duration: 600, delay: 200 + categoryIndex * 100 } }">
-            
+          <div v-for="(category, categoryIndex) in data.categories" :key="categoryIndex"
+            class="bg-white rounded-lg shadow-md p-8 mb-8" v-motion :initial="{ opacity: 0, x: -30 }"
+            :enter="{ opacity: 1, x: 0, transition: { duration: 600, delay: 200 + categoryIndex * 100 } }">
+
             <div class="flex items-center mb-6">
               <UIcon :name="category.icon" class="w-8 h-8 text-primary-600 mr-3" />
               <h2 class="text-2xl font-semibold text-gray-800">{{ category.title }}</h2>
             </div>
-            
+
             <div class="space-y-6">
-              <div v-for="(item, itemIndex) in category.questions" :key="itemIndex" 
-                   class="border-b border-gray-100 pb-6 last:border-b-0">
+              <div v-for="(item, itemIndex) in category.questions" :key="itemIndex"
+                class="border-b border-gray-100 pb-6 last:border-b-0">
                 <h3 class="text-lg font-medium mb-3 text-gray-800">{{ item.question }}</h3>
                 <p class="text-gray-600">{{ item.answer }}</p>
               </div>
             </div>
           </div>
-          
+
           <!-- Поиск вопросов -->
-          <div class="bg-white rounded-lg shadow-md p-8 mb-8" v-motion 
-               :initial="{ opacity: 0, y: 20 }" 
-               :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 600 } }">
+          <div class="bg-white rounded-lg shadow-md p-8 mb-8" v-motion :initial="{ opacity: 0, y: 20 }"
+            :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 600 } }">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">{{ data.searchText }}</h2>
             <div class="relative mb-6">
-              <input type="text" placeholder="Введите ваш вопрос..." 
-                     class="w-full py-3 px-4 pl-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+              <input type="text" placeholder="Введите ваш вопрос..."
+                class="w-full py-3 px-4 pl-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
               <UIcon name="i-heroicons-magnifying-glass" class="absolute left-4 top-3.5 text-gray-400 w-5 h-5" />
             </div>
             <UButton to="/request" color="primary" variant="solid" block>
@@ -56,10 +50,11 @@
             <div class="bg-white rounded-lg shadow-md p-6 mb-8 border border-green-500 md:border-none">
               <h3 class="text-xl font-semibold mb-4 text-gray-800">Популярные вопросы</h3>
               <ul class="space-y-4">
-                <li v-for="(question, qIndex) in data.popularQuestions" :key="qIndex" 
-                    class="border-b border-gray-100 pb-3 last:border-b-0 last:pb-0">
+                <li v-for="(question, qIndex) in data.popularQuestions" :key="qIndex"
+                  class="border-b border-gray-100 pb-3 last:border-b-0 last:pb-0">
                   <a href="#" class="text-gray-700 hover:text-primary-600 flex items-start group">
-                    <UIcon name="i-heroicons-question-mark-circle" class="w-5 h-5 text-primary-600 mr-2 mt-1 flex-shrink-0" />
+                    <UIcon name="i-heroicons-question-mark-circle"
+                      class="w-5 h-5 text-primary-600 mr-2 mt-1 flex-shrink-0" />
                     <span class="group-hover:underline decoration-dotted">{{ question }}</span>
                   </a>
                 </li>

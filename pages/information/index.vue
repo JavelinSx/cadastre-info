@@ -1,5 +1,5 @@
 <template>
-    <div class="py-16 bg-gray-50 text-gray-800">
+    <div class="py-16  text-gray-800">
         <div class="container-custom">
             <!-- Заголовок страницы -->
             <InfoHeader :title="data.title" :description="data.description" />
@@ -71,7 +71,7 @@
                                 {{ paragraph }}
                             </p>
                             <h3 class="text-xl font-semibold mb-3 text-gray-800 mt-4">{{ data.sections[3].subtitleText
-                                }}</h3>
+                            }}</h3>
                             <ol class="list-decimal pl-6 mb-6 space-y-3 text-gray-600">
                                 <li v-for="(item, itemIndex) in data.sections[3].numberedList" :key="itemIndex">
                                     <span class="font-medium">{{ item.title }}</span> —

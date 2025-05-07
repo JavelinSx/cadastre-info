@@ -1,5 +1,5 @@
 <template>
-  <div class="py-16 bg-gray-50 text-gray-800">
+  <div class="py-16  text-gray-800">
     <div class="container-custom">
       <!-- Заголовок страницы -->
       <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: 20 }"
@@ -70,7 +70,7 @@
         </div>
 
         <!-- Блок с призывом к действию -->
-        <div class="mt-12 bg-primary-50 p-8 rounded-lg shadow-md border border-primary-100" v-motion
+        <div class="md:col-span-3 mt-12 bg-primary-50 p-8 rounded-lg shadow-md border border-primary-100" v-motion
           :initial="{ opacity: 0, y: 30 }" :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 600 } }">
           <div class="text-center">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">{{ serviceData.cta.title }}</h2>
