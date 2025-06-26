@@ -106,7 +106,6 @@ const navLinks = [
     { title: 'Информация', path: '/information' },
     { title: 'Блог', path: '/blog' },
     { title: 'О нас', path: '/about' },
-    { title: 'Контакты', path: '/contacts' }
 ];
 
 // Функция для выбора иконки в зависимости от названия пункта меню

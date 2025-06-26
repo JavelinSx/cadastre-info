@@ -107,7 +107,11 @@ export const technicalPlanRoomData: ServiceData = {
     types: {
       title: 'Виды технических планов',
       items: [
-        { icon: 'i-heroicons-home', text: 'Технический план дома', link: '/services/technical-plans/house' },
+        {
+          icon: 'i-heroicons-home',
+          text: 'Технический план дома',
+          link: '/services/technical-plans/house',
+        },
         {
           icon: 'i-heroicons-building-office',
           text: 'Технический план здания',
@@ -124,14 +128,24 @@ export const technicalPlanRoomData: ServiceData = {
           link: '/services/technical-plans/construction',
         },
         {
+          icon: 'i-heroicons-wrench-screwdriver',
+          text: 'Технический план ОНС',
+          link: '/services/technical-plans/construction-in-progress',
+        },
+        {
           icon: 'i-heroicons-square-3-stack-3d',
           text: 'Технический план части здания',
           link: '/services/technical-plans/part-building',
         },
         {
-          icon: 'i-heroicons-cube-transparent',
-          text: 'Технический план ОНС',
-          link: '/services/technical-plans/construction-in-progress',
+          icon: 'i-heroicons-document-text',
+          text: 'Экспликация квартир',
+          link: '/services/technical-plans/floorplan',
+        },
+        {
+          icon: 'i-heroicons-clipboard-document-check',
+          text: 'Акт обследования',
+          link: '/services/technical-plans/inspection',
         },
       ],
     },

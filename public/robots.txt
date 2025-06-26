@@ -1,1 +1,33 @@
+User-agent: *
+Allow: /
 
+# Запрещаем индексацию служебных страниц
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /admin/
+Disallow: /test/
+Disallow: /.well-known/
+
+# Разрешаем доступ к основным разделам
+Allow: /services/
+Allow: /information/
+Allow: /blog/
+Allow: /contacts
+Allow: /about
+Allow: /request
+
+# Sitemap
+Sitemap: https://pleskad.ru/sitemap.xml
+
+# Дополнительные правила для поисковых ботов
+User-agent: Yandex
+Crawl-delay: 1
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Запрещаем доступ к файлам конфигурации
+Disallow: /*.json$
+Disallow: /*.config.js$
+Disallow: /*.config.ts$

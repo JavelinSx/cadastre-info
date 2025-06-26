@@ -2,9 +2,8 @@
   <li :class="itemClass" class="flex ">
     <!-- Разделитель между элементами (кроме первого) -->
 
-
     <!-- Последний элемент (без ссылки) -->
-    <div v-if="item.isLast" class="flex items-center text-primary-800" :class="lastItemClass">
+    <div v-if="item.isLast" class="flex items-center text-primary-600 font-bold" :class="lastItemClass">
       <!-- Иконка -->
       <UIcon v-if="shouldShowIcon" :name="item.icon || 'i-heroicons-document-text'" class="w-4 h-4 mr-1.5 flex-shrink-0"
         :class="iconClass" />
@@ -13,7 +12,7 @@
 
     <!-- Ссылка для промежуточных элементов -->
     <NuxtLink v-else :to="item.path"
-      class="flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-300"
+      class="flex items-center text-primary-600 hover:text-primary-700 transition-colors duration-300"
       :class="linkClass">
       <!-- Иконка -->
       <UIcon v-if="shouldShowIcon" :name="item.icon || 'i-heroicons-document-text'" class="w-4 h-4 mr-1.5 flex-shrink-0"
@@ -36,7 +35,7 @@ import type { BreadcrumbItem } from '~/utils/types/breadcrumbs'
 
 const props = defineProps({
   /**
-   * Элемент хлебных крошек
+   * Элемент
    */
   item: {
     type: Object as () => BreadcrumbItem,

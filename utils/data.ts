@@ -11,11 +11,11 @@ interface ServiceTypeItem {
 export const itemsForStepperServiceI: ServiceItem[] = [
   {
     id: 1,
-    label: 'Кадастровые работы в отношении земельного участка',
+    label: 'Земельные участки',
   },
   {
     id: 2,
-    label: 'Кадастровые работы в отношении дома, здания',
+    label: 'Здания, строения, сооружения, объекты незавершенного строительства',
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const itemsForStepperServiceI: ServiceItem[] = [
   },
   {
     id: 4,
-    label: 'Геодезические работы',
+    label: 'Инженерно-геодезические изыскания',
   },
   {
     id: 5,
