@@ -9,7 +9,16 @@
 </template>
 
 <script setup lang="ts">
-
+useHead({
+  meta: [
+    { name: 'application-name', content: 'ПлесКад' },
+    { name: 'apple-mobile-web-app-title', content: 'ПлесКад' },
+    { name: 'apple-mobile-web-app-capable', content: 'yes' },
+    { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+    { name: 'mobile-web-app-capable', content: 'yes' },
+    { name: 'format-detection', content: 'telephone=no' }
+  ]
+})
 onMounted(() => {
   if (import.meta.client) {
     // Добавляем скрипт Яндекс.Метрики
