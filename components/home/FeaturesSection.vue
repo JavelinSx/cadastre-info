@@ -1,13 +1,9 @@
 <template>
   <section class="py-16 text-white relative overflow-hidden min-h-[600px]">
-    <!-- Градиентный фон с параллакс-эффектом -->
+    <!-- Градиентный фон -->
     <div class="absolute inset-0">
       <!-- Основной градиентный фон с анимацией -->
       <div class="absolute inset-0 animated-gradient"></div>
-
-      <!-- Параллакс слой -->
-      <div :ref="parallaxRef" class="parallax-layer absolute inset-0"
-        :class="{ 'will-change-transform': isParallaxActive }"></div>
 
       <!-- Декоративные элементы -->
       <div class="absolute top-10 left-10 w-32 h-32 bg-green-400/10 rounded-full blur-xl"></div>
@@ -19,14 +15,14 @@
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.1)_100%)]"></div>
 
     <div class="container-custom relative z-10">
-      <!-- Заголовок - сразу виден, используем :enter -->
+      <!-- Заголовок - сразу виден, используем :visible-once -->
       <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: -30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 800, delay: 200 } }">
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 300, delay: 200 } }">
         <div
           class="feature-card h-full rounded-xl overflow-hidden border pt-6 pb-6 relative border-white/20
                      bg-white/10 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           v-motion :initial="{ opacity: 0, scale: 0.9 }"
-          :visible="{ opacity: 1, scale: 1, transition: { duration: 600, delay: 400 } }">
+          :visible-once="{ opacity: 1, scale: 1, transition: { duration: 300, delay: 200 } }">
           <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
           <h2 class="text-2xl mb-4 text-white font-bold">Почему выбирают нас</h2>
 
@@ -44,12 +40,12 @@
           opacity: 0,
           y: 50,
           rotate: -5
-        }" :visible="{
+        }" :visible-once="{
           opacity: 1,
           y: 0,
           rotate: 0,
           transition: {
-            duration: 600,
+            duration: 300,
             delay: index * 150,
             type: 'spring',
             stiffness: 100
@@ -67,12 +63,12 @@
               <div class="flex justify-center mb-4">
                 <div class="w-16 h-16 rounded-full bg-green-100/90 p-4 flex items-center justify-center
                            shadow-lg transform transition-all duration-300 hover:scale-110 hover:bg-green-200/90"
-                  v-motion :initial="{ scale: 0, rotate: 180 }" :visible="{
+                  v-motion :initial="{ scale: 0, rotate: 180 }" :visible-once="{
                     scale: 1,
                     rotate: 0,
                     transition: {
-                      duration: 500,
-                      delay: index * 150 + 300,
+                      duration: 300,
+                      delay: index * 150 + 200,
                       type: 'spring'
                     }
                   }">
@@ -86,8 +82,8 @@
                   opacity: 1,
                   x: 0,
                   transition: {
-                    duration: 400,
-                    delay: index * 150 + 500
+                    duration: 300,
+                    delay: index * 150 + 200
                   }
                 }">
                 {{ feature.title }}
@@ -98,8 +94,8 @@
             <div class="w-3/4 h-px bg-white/30 mx-auto" v-motion :initial="{ scaleX: 0 }" :visible-once="{
               scaleX: 1,
               transition: {
-                duration: 600,
-                delay: index * 150 + 600
+                duration: 300,
+                delay: index * 150 + 200
               }
             }"></div>
 
@@ -110,8 +106,8 @@
                   opacity: 1,
                   y: 0,
                   transition: {
-                    duration: 500,
-                    delay: index * 150 + 700
+                    duration: 300,
+                    delay: index * 150 + 200
                   }
                 }">
                 {{ feature.description }}
@@ -125,21 +121,6 @@
 </template>
 
 <script setup lang="ts">
-import { useDevice } from '~/composables/useDevice';
-import { useParallax } from '~/composables/useParallax';
-
-// Определяем тип устройства
-const { isMobile } = useDevice();
-
-// Используем параллакс на всех устройствах
-const parallaxOptions = {
-  speed: 0.8, // Увеличиваем скорость для видимого эффекта
-  direction: 'down' as const,
-  mobileDisabled: false // Включаем параллакс для всех устройств
-};
-
-const { el: parallaxRef, isActive: isParallaxActive } = useParallax(parallaxOptions);
-
 // Преимущества
 const features = [
   {
@@ -188,13 +169,6 @@ const features = [
   }
 }
 
-/* Стили для параллакс слоя */
-.parallax-layer {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(1px);
-  will-change: transform;
-}
-
 /* Обеспечим достаточную высоту секции */
 section {
   min-height: 50vh;
@@ -216,13 +190,6 @@ section {
   backdrop-filter: blur(15px);
   border-color: rgba(255, 255, 255, 0.3);
 }
-
-/* Убираем старые CSS анимации, теперь используем только Vue Motion */
-.feature-item {
-  /* Убираем CSS анимацию, используем только Vue Motion */
-}
-
-/* Убираем старую CSS анимацию fadeInUp */
 
 /* Плавный бесконечный переход градиента */
 @keyframes infiniteGradientShift {
@@ -255,12 +222,6 @@ section {
   animation: infiniteGradientShift 8s ease-in-out infinite;
 }
 
-/* Стили для параллакс слоя */
-.parallax-layer {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(1px);
-}
-
 /* Оптимизация для мобильных */
 @media (max-width: 767px) {
   .feature-card {
@@ -268,11 +229,6 @@ section {
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(5px);
-  }
-
-  .feature-item {
-    animation-duration: 0.6s;
-    animation-delay: calc(var(--delay) * 0.7);
   }
 
   /* Замедляем анимацию на мобильных */

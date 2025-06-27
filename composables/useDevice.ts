@@ -1,33 +1,45 @@
-// composables/useDevice.ts
-import { ref, onMounted, onUnmounted } from 'vue';
+// composables/useDevice.ts - исправленная версия
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 export function useDevice(mobileBreakpoint = 768) {
   const isMobile = ref(false);
+  let resizeHandler: (() => void) | null = null;
 
-  // Функция для проверки ширины экрана
   const checkDevice = () => {
-    isMobile.value = window.innerWidth < mobileBreakpoint;
+    if (import.meta.client) {
+      isMobile.value = window.innerWidth < mobileBreakpoint;
+    }
   };
 
-  // Выполняем только на клиенте
-  if (process.client) {
-    // Инициализация при монтировании компонента
+  if (import.meta.client) {
     onMounted(() => {
       checkDevice();
-      window.addEventListener('resize', checkDevice);
+
+      // Создаем обработчик с throttling для производительности
+      let timeoutId: NodeJS.Timeout | null = null;
+      resizeHandler = () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(checkDevice, 100);
+      };
+
+      window.addEventListener("resize", resizeHandler, { passive: true });
     });
 
-    // Очистка слушателя при уничтожении компонента
     onUnmounted(() => {
-      window.removeEventListener('resize', checkDevice);
+      if (resizeHandler) {
+        window.removeEventListener("resize", resizeHandler);
+        resizeHandler = null;
+      }
     });
-  } else {
-    // Для SSR используем дефолтное значение
-    isMobile.value = false;
   }
 
+  // Используем computed для isDesktop
+  const isDesktop = computed(() => !isMobile.value);
+
   return {
-    isMobile,
-    isDesktop: ref(!isMobile.value),
+    isMobile: readonly(isMobile),
+    isDesktop: readonly(isDesktop),
   };
 }

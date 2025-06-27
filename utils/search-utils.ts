@@ -1,13 +1,23 @@
 // utils/search-utils.ts
-import type { SearchResultItemType, GroupedResults } from '~/utils/types/search';
+import type {
+  GroupedResults,
+  SearchResultItemType,
+} from "~/utils/types/search";
+// Ограничиваем размер localStorage для предотвращения утечек
+const MAX_HISTORY_SIZE = 5; // Уменьшили с 10 до 5
+const MAX_QUERY_LENGTH = 100; // Ограничиваем длину запросов
 
+// Кеш для localStorage с автоочисткой
+let historyCache: string[] | null = null;
+let cacheTimestamp = 0;
+const CACHE_TTL = 30000; // 30 секунд
 // Выполняет поиск по базе данных
 export function performSearch(
   database: SearchResultItemType[],
   query: string,
   maxResults = 20
 ): SearchResultItemType[] {
-  if (!query || query.trim() === '') {
+  if (!query || query.trim() === "") {
     return [];
   }
 
@@ -22,7 +32,7 @@ export function performSearch(
         item.description.toLowerCase(),
         item.category.toLowerCase(),
         ...(item.keywords || []).map((kw) => kw.toLowerCase()),
-      ].join(' ');
+      ].join(" ");
 
       // Рассчитываем релевантность
       let relevance = 0;
@@ -61,7 +71,9 @@ export function performSearch(
 }
 
 // Группирует результаты поиска по категориям
-export function groupResultsByCategory(results: SearchResultItemType[]): GroupedResults {
+export function groupResultsByCategory(
+  results: SearchResultItemType[]
+): GroupedResults {
   return results.reduce<GroupedResults>((grouped, item) => {
     if (!grouped[item.category]) {
       grouped[item.category] = [];
@@ -73,12 +85,14 @@ export function groupResultsByCategory(results: SearchResultItemType[]): Grouped
 
 // Подсвечивает найденный текст в строке
 export function highlightText(text: string, query: string): string {
-  if (!query || query.trim() === '') {
+  if (!query || query.trim() === "") {
     return text;
   }
 
   const normalizedQuery = query.toLowerCase().trim();
-  const queryWords = normalizedQuery.split(/\s+/).filter((word) => word.length > 1);
+  const queryWords = normalizedQuery
+    .split(/\s+/)
+    .filter((word) => word.length > 1);
 
   if (queryWords.length === 0) {
     return text;
@@ -87,15 +101,18 @@ export function highlightText(text: string, query: string): string {
   let highlightedText = text;
 
   queryWords.forEach((word) => {
-    const regex = new RegExp(`(${word})`, 'gi');
-    highlightedText = highlightedText.replace(regex, '<mark>$1</mark>');
+    const regex = new RegExp(`(${word})`, "gi");
+    highlightedText = highlightedText.replace(regex, "<mark>$1</mark>");
   });
 
   return highlightedText;
 }
 
 // Создает функцию с задержкой вызова (debounce)
-export function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
   return function (...args: Parameters<T>): void {
@@ -114,54 +131,142 @@ export function debounce<T extends (...args: any[]) => any>(func: T, wait: numbe
 
 // Сохраняет историю поиска в локальное хранилище
 export function saveSearchHistory(query: string): void {
-  if (!query || query.trim() === '') {
+  if (!query || query.trim() === "" || query.length > MAX_QUERY_LENGTH) {
     return;
   }
 
   const normalizedQuery = query.trim();
 
-  if (import.meta.client) {
+  // Только на клиенте и не в SSR
+  if (!import.meta.client || import.meta.server) {
+    return;
+  }
+
+  try {
+    // Используем кеш для уменьшения обращений к localStorage
+    let history: string[];
+    const now = Date.now();
+
+    if (historyCache && now - cacheTimestamp < CACHE_TTL) {
+      history = [...historyCache];
+    } else {
+      history = JSON.parse(localStorage.getItem("searchHistory") || "[]");
+      historyCache = history;
+      cacheTimestamp = now;
+    }
+
+    // Проверяем валидность истории
+    if (!Array.isArray(history)) {
+      history = [];
+    }
+
+    // Фильтруем невалидные элементы
+    history = history.filter(
+      (item) =>
+        typeof item === "string" &&
+        item.length > 0 &&
+        item.length <= MAX_QUERY_LENGTH
+    );
+
+    // Если запрос уже есть, удаляем его
+    const updatedHistory = history.filter((item) => item !== normalizedQuery);
+
+    // Добавляем в начало
+    updatedHistory.unshift(normalizedQuery);
+
+    // Ограничиваем размер
+    const limitedHistory = updatedHistory.slice(0, MAX_HISTORY_SIZE);
+
+    // Сохраняем только если есть изменения
+    if (JSON.stringify(limitedHistory) !== JSON.stringify(history)) {
+      localStorage.setItem("searchHistory", JSON.stringify(limitedHistory));
+      // Обновляем кеш
+      historyCache = limitedHistory;
+      cacheTimestamp = Date.now();
+    }
+  } catch (error) {
+    console.error("Search history save error:", error);
+    // При ошибке очищаем кеш
+    historyCache = null;
     try {
-      // Получаем текущую историю поиска
-      const history = JSON.parse(localStorage.getItem('searchHistory') || '[]') as string[];
-
-      // Если запрос уже есть в истории, удаляем его (чтобы добавить в начало)
-      const updatedHistory = history.filter((item) => item !== normalizedQuery);
-
-      // Добавляем запрос в начало истории
-      updatedHistory.unshift(normalizedQuery);
-
-      // Ограничиваем историю 10 последними запросами
-      const limitedHistory = updatedHistory.slice(0, 10);
-
-      // Сохраняем обновленную историю
-      localStorage.setItem('searchHistory', JSON.stringify(limitedHistory));
-    } catch (error) {
-      console.error('Ошибка при сохранении истории поиска:', error);
+      localStorage.removeItem("searchHistory");
+    } catch (e) {
+      // Ignore cleanup errors
     }
   }
 }
 
 // Получает историю поиска из локального хранилища
 export function getSearchHistory(): string[] {
-  if (import.meta.client) {
-    try {
-      return JSON.parse(localStorage.getItem('searchHistory') || '[]') as string[];
-    } catch (error) {
-      console.error('Ошибка при получении истории поиска:', error);
+  if (!import.meta.client || import.meta.server) {
+    return [];
+  }
+
+  try {
+    // Используем кеш
+    const now = Date.now();
+    if (historyCache && now - cacheTimestamp < CACHE_TTL) {
+      return [...historyCache];
+    }
+
+    const history = JSON.parse(localStorage.getItem("searchHistory") || "[]");
+
+    if (!Array.isArray(history)) {
       return [];
     }
+
+    // Фильтруем и валидируем
+    const validHistory = history
+      .filter(
+        (item) =>
+          typeof item === "string" &&
+          item.length > 0 &&
+          item.length <= MAX_QUERY_LENGTH
+      )
+      .slice(0, MAX_HISTORY_SIZE);
+
+    // Обновляем кеш
+    historyCache = validHistory;
+    cacheTimestamp = now;
+
+    return validHistory;
+  } catch (error) {
+    console.error("Search history get error:", error);
+    historyCache = null;
+    return [];
   }
-  return [];
 }
 
 // Очищает историю поиска
 export function clearSearchHistory(): void {
-  if (import.meta.client) {
-    try {
-      localStorage.removeItem('searchHistory');
-    } catch (error) {
-      console.error('Ошибка при очистке истории поиска:', error);
-    }
+  if (!import.meta.client || import.meta.server) {
+    return;
   }
+
+  try {
+    localStorage.removeItem("searchHistory");
+    historyCache = null;
+    cacheTimestamp = 0;
+  } catch (error) {
+    console.error("Search history clear error:", error);
+  }
+}
+
+// Очистка при выгрузке страницы
+if (import.meta.client) {
+  window.addEventListener("beforeunload", () => {
+    // Очищаем кеш
+    historyCache = null;
+
+    // Если localStorage стал слишком большим, очищаем
+    try {
+      const historySize = localStorage.getItem("searchHistory")?.length || 0;
+      if (historySize > 1000) {
+        // Если больше 1KB
+        localStorage.removeItem("searchHistory");
+      }
+    } catch (e) {
+      // Ignore errors
+    }
+  });
 }

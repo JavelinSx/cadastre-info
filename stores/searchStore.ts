@@ -1,14 +1,18 @@
 // stores/searchStore.ts
-import { defineStore } from 'pinia';
-import type { SearchResultItemType, GroupedResults, SearchOptions } from '~/utils/types/search';
-import { searchDatabase, defaultSearchOptions } from '~/utils/data/search-data';
+import { defineStore } from "pinia";
+import { defaultSearchOptions, searchDatabase } from "~/utils/data/search-data";
 import {
-  performSearch,
-  groupResultsByCategory,
-  saveSearchHistory,
-  getSearchHistory,
   clearSearchHistory as clearHistoryUtil,
-} from '~/utils/search-utils';
+  getSearchHistory,
+  groupResultsByCategory,
+  performSearch,
+  saveSearchHistory,
+} from "~/utils/search-utils";
+import type {
+  GroupedResults,
+  SearchOptions,
+  SearchResultItemType,
+} from "~/utils/types/search";
 
 interface SearchState {
   isOpen: boolean;
@@ -20,12 +24,14 @@ interface SearchState {
   options: SearchOptions;
   customSearchDatabase: SearchResultItemType[];
   searchHistory: string[];
+  searchTimeout: NodeJS.Timeout | null;
+  closeTimeout: NodeJS.Timeout | null;
 }
 
-export const useSearchStore = defineStore('search', {
+export const useSearchStore = defineStore("search", {
   state: (): SearchState => ({
     isOpen: false,
-    searchTerm: '',
+    searchTerm: "",
     isLoading: false,
     results: [],
     activeCategory: -1,
@@ -33,12 +39,16 @@ export const useSearchStore = defineStore('search', {
     options: { ...defaultSearchOptions },
     customSearchDatabase: [],
     searchHistory: [],
+    searchTimeout: null as NodeJS.Timeout | null,
+    closeTimeout: null as NodeJS.Timeout | null,
   }),
 
   getters: {
     // База данных для поиска
     activeSearchDatabase(): SearchResultItemType[] {
-      return this.customSearchDatabase.length > 0 ? this.customSearchDatabase : searchDatabase;
+      return this.customSearchDatabase.length > 0
+        ? this.customSearchDatabase
+        : searchDatabase;
     },
 
     // Сгруппированные результаты
@@ -80,15 +90,20 @@ export const useSearchStore = defineStore('search', {
 
     closeSearch() {
       this.isOpen = false;
-      setTimeout(() => {
-        this.searchTerm = '';
+
+      // Очищаем предыдущий таймер
+      this.clearTimeouts();
+
+      this.closeTimeout = setTimeout(() => {
+        this.searchTerm = "";
         this.results = [];
         this.resetNavigation();
+        this.closeTimeout = null; // Очищаем ссылку
       }, 300);
     },
 
     clearSearch() {
-      this.searchTerm = '';
+      this.searchTerm = "";
       this.results = [];
       this.resetNavigation();
     },
@@ -102,7 +117,6 @@ export const useSearchStore = defineStore('search', {
     performSearch() {
       const term = this.searchTerm;
 
-      // Проверка минимальной длины
       if (!term || term.length < (this.options.minQueryLength || 2)) {
         this.results = [];
         this.isLoading = false;
@@ -112,12 +126,23 @@ export const useSearchStore = defineStore('search', {
 
       this.isLoading = true;
 
-      // Имитация задержки для лучшего UX
-      setTimeout(() => {
-        this.results = performSearch(this.activeSearchDatabase, term, this.options.maxResults || 20);
+      // Очищаем предыдущий таймер поиска
+      this.clearTimeouts();
+
+      this.searchTimeout = setTimeout(() => {
+        this.results = performSearch(this.activeSearchDatabase, term);
         this.isLoading = false;
-        this.resetNavigation();
-      }, 300);
+        this.searchTimeout = null; // Очищаем ссылку
+      }, 150); // Уменьшили задержку
+    },
+
+    // Метод для полной очистки при unmount
+    cleanup() {
+      this.clearTimeouts();
+      this.results = [];
+      this.searchHistory = [];
+      this.searchTerm = "";
+      this.isOpen = false;
     },
 
     // Выбор результата
@@ -241,6 +266,18 @@ export const useSearchStore = defineStore('search', {
         ...this.options,
         ...newOptions,
       };
+    },
+
+    // Очистка всех таймеров
+    clearTimeouts() {
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+        this.searchTimeout = null;
+      }
+      if (this.closeTimeout) {
+        clearTimeout(this.closeTimeout);
+        this.closeTimeout = null;
+      }
     },
 
     setCustomSearchDatabase(database: SearchResultItemType[]) {

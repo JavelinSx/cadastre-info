@@ -3,14 +3,14 @@
     <div class="container-custom">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- Левая часть - основная информация -->
-        <div v-motion :initial="{ opacity: 0, x: -50 }" :visible="{
+        <div v-motion :initial="{ opacity: 0, x: -50 }" :visible-once="{
           opacity: 1,
           x: 0,
           transition: {
             duration: 400
           }
         }">
-          <h2 class="text-3xl font-bold mb-4" v-motion :initial="{ opacity: 0, y: 30 }" :visible="{
+          <h2 class="text-3xl font-bold mb-4" v-motion :initial="{ opacity: 0, y: 30 }" :visible-once="{
             opacity: 1,
             y: 0,
             transition: {
@@ -21,7 +21,7 @@
             Актуальная правовая информация
           </h2>
 
-          <p class="text-gray-600 mb-6" v-motion :initial="{ opacity: 0, y: 20 }" :visible="{
+          <p class="text-gray-600 mb-6" v-motion :initial="{ opacity: 0, y: 20 }" :visible-once="{
             opacity: 1,
             y: 0,
             transition: {
@@ -36,7 +36,7 @@
 
           <ul class="space-y-4">
             <li v-for="(item, index) in infoItems" :key="item.id" class="flex items-start" v-motion
-              :initial="{ opacity: 0, x: -30, scale: 0.95 }" :visible="{
+              :initial="{ opacity: 0, x: -30, scale: 0.95 }" :visible-once="{
                 opacity: 1,
                 x: 0,
                 scale: 1,
@@ -45,7 +45,7 @@
                   delay: 200 + (index * 80)
                 }
               }">
-              <div v-motion :initial="{ scale: 0, rotate: 90 }" :visible="{
+              <div v-motion :initial="{ scale: 0, rotate: 90 }" :visible-once="{
                 scale: 1,
                 rotate: 0,
                 transition: {
@@ -59,7 +59,7 @@
             </li>
           </ul>
 
-          <div v-motion :initial="{ opacity: 0, y: 30, scale: 0.9 }" :visible="{
+          <div v-motion :initial="{ opacity: 0, y: 30, scale: 0.9 }" :visible-once="{
             opacity: 1,
             y: 0,
             scale: 1,
@@ -75,7 +75,7 @@
         </div>
 
         <!-- Правая часть - обновления законодательства -->
-        <div class="bg-gray-100 p-8 rounded-lg" v-motion :initial="{ opacity: 0, x: 50, rotateY: 15 }" :visible="{
+        <div class="bg-gray-100 p-8 rounded-lg" v-motion :initial="{ opacity: 0, x: 50, rotateY: 15 }" :visible-once="{
           opacity: 1,
           x: 0,
           rotateY: 0,
@@ -84,7 +84,7 @@
             delay: 100
           }
         }">
-          <h3 class="text-2xl font-semibold mb-4" v-motion :initial="{ opacity: 0, y: 20 }" :visible="{
+          <h3 class="text-2xl font-semibold mb-4" v-motion :initial="{ opacity: 0, y: 20 }" :visible-once="{
             opacity: 1,
             y: 0,
             transition: {
@@ -101,16 +101,16 @@
                 opacity: 0,
                 y: 40,
                 scale: 0.95
-              }" :visible="{
-                              opacity: 1,
-                              y: 0,
-                              scale: 1,
-                              transition: {
-                                duration: 350,
-                                delay: 250 + (index * 100)
-                              }
-                            }">
-              <p class="text-sm text-gray-500 mb-1" v-motion :initial="{ opacity: 0, x: -20 }" :visible="{
+              }" :visible-once="{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: {
+                  duration: 350,
+                  delay: 250 + (index * 100)
+                }
+              }">
+              <p class="text-sm text-gray-500 mb-1" v-motion :initial="{ opacity: 0, x: -20 }" :visible-once="{
                 opacity: 1,
                 x: 0,
                 transition: {
@@ -121,7 +121,7 @@
                 {{ update.name }}
               </p>
 
-              <h4 class="text-lg font-medium mb-2" v-motion :initial="{ opacity: 0, y: 15 }" :visible="{
+              <h4 class="text-lg font-medium mb-2" v-motion :initial="{ opacity: 0, y: 15 }" :visible-once="{
                 opacity: 1,
                 y: 0,
                 transition: {
@@ -132,7 +132,7 @@
                 {{ update.title }}
               </h4>
 
-              <p class="text-gray-600" v-motion :initial="{ opacity: 0, y: 10 }" :visible="{
+              <p class="text-gray-600" v-motion :initial="{ opacity: 0, y: 10 }" :visible-once="{
                 opacity: 1,
                 y: 0,
                 transition: {
@@ -143,7 +143,7 @@
                 {{ update.description }}
               </p>
 
-              <div v-motion :initial="{ opacity: 0, x: -15, scale: 0.9 }" :visible="{
+              <div v-motion :initial="{ opacity: 0, x: -15, scale: 0.9 }" :visible-once="{
                 opacity: 1,
                 x: 0,
                 scale: 1,

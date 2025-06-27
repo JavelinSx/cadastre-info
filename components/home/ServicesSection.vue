@@ -2,7 +2,7 @@
   <section class="py-16 bg-white text-gray-600 flex justify-center">
     <div class="container-custom">
       <!-- Заголовок секции -->
-      <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: -40, scale: 0.95 }" :visible="{
+      <div class="text-center mb-12" v-motion :initial="{ opacity: 0, y: -40, scale: 0.95 }" :visible-once="{
         opacity: 1,
         y: 0,
         scale: 1,
@@ -12,7 +12,7 @@
           stiffness: 80
         }
       }">
-        <h2 class="text-3xl font-bold mb-4" v-motion :initial="{ opacity: 0, rotateX: -20 }" :visible="{
+        <h2 class="text-3xl font-bold mb-4" v-motion :initial="{ opacity: 0, rotateX: -20 }" :visible-once="{
           opacity: 1,
           rotateX: 0,
           transition: {
@@ -23,7 +23,7 @@
         }">
           Наши услуги
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto" v-motion :initial="{ opacity: 0, y: 20 }" :visible="{
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" v-motion :initial="{ opacity: 0, y: 20 }" :visible-once="{
           opacity: 1,
           y: 0,
           transition: {
@@ -43,7 +43,7 @@
           y: 20,
           rotateY: index % 2 === 0 ? -15 : 15,
           scale: 0.9
-        }" :visible="{
+        }" :visible-once="{
           opacity: 1,
           y: -20,
           rotateY: 0,
@@ -59,7 +59,7 @@
             class="card h-full flex flex-col bg-white rounded-lg border border-gray-100 p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary-200">
 
             <!-- Заголовок карточки с иконкой -->
-            <div class="flex items-center mb-4" v-motion :initial="{ opacity: 0, x: -30 }" :visible="{
+            <div class="flex items-center mb-4" v-motion :initial="{ opacity: 0, x: -30 }" :visible-once="{
               opacity: 1,
               x: 0,
               transition: {
@@ -69,7 +69,7 @@
             }">
               <div
                 class="rounded-full bg-primary-100 p-3 w-12 h-12 flex items-center justify-center mr-4 transition-all duration-300 group-hover:bg-primary-200"
-                v-motion :initial="{ scale: 0, rotate: 180 }" :visible="{
+                v-motion :initial="{ scale: 0, rotate: 180 }" :visible-once="{
                   scale: 1,
                   rotate: 0,
                   transition: {
@@ -81,7 +81,7 @@
                 }">
                 <UIcon :name="service.icon" class="w-6 h-6 text-primary-600" />
               </div>
-              <h3 class="text-xl font-semibold text-gray-800" v-motion :initial="{ opacity: 0, y: 10 }" :visible="{
+              <h3 class="text-xl font-semibold text-gray-800" v-motion :initial="{ opacity: 0, y: 10 }" :visible-once="{
                 opacity: 1,
                 y: 0,
                 transition: {
@@ -94,7 +94,7 @@
             </div>
 
             <!-- Описание -->
-            <p class="text-gray-600 mb-4 flex-grow" v-motion :initial="{ opacity: 0, y: 20 }" :visible="{
+            <p class="text-gray-600 mb-4 flex-grow" v-motion :initial="{ opacity: 0, y: 20 }" :visible-once="{
               opacity: 1,
               y: 0,
               transition: {
@@ -106,7 +106,7 @@
             </p>
 
             <!-- Ссылка "Подробнее" -->
-            <div v-motion :initial="{ opacity: 0, x: -20, scale: 0.9 }" :visible="{
+            <div v-motion :initial="{ opacity: 0, x: -20, scale: 0.9 }" :visible-once="{
               opacity: 1,
               x: 0,
               scale: 1,

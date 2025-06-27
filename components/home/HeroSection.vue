@@ -6,7 +6,7 @@
 
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <!-- Левая часть - текстовый контент -->
-        <div v-motion :initial="{ opacity: 0, y: 80, scale: 0.95 }" :visible="{
+        <div v-motion :initial="{ opacity: 0, y: 80, scale: 0.95 }" :visible-once="{
           opacity: 1,
           y: 0,
           scale: 1,
@@ -19,7 +19,7 @@
 
           <!-- Заголовок -->
           <h1 class="text-4xl md:text-5xl font-bold mb-4" v-motion :initial="{ opacity: 0, y: 30, rotateX: -15 }"
-            :visible="{
+            :visible-once="{
               opacity: 1,
               y: 0,
               rotateX: 0,
@@ -29,11 +29,11 @@
                 type: 'spring'
               }
             }">
-            Кадастровая информация и услуги
+            Кадастровые работы Плесецкий район
           </h1>
 
           <!-- Описание -->
-          <p class="text-xl mb-8" v-motion :initial="{ opacity: 0, x: -50 }" :visible="{
+          <p class="text-xl mb-8" v-motion :initial="{ opacity: 0, x: -50 }" :visible-once="{
             opacity: 1,
             x: 0,
             transition: {
@@ -41,12 +41,13 @@
               delay: 400
             }
           }">
-            Предоставляем полную правовую информацию о кадастровой деятельности и помогаем с оформлением
-            всех необходимых документов.
+            Предоставляем правовую
+            информацию о кадастровой, геодезической деятельности и помогаем с оформлением
+            всех необходимых документов. Возможен выезд по Архангельской области и другие районы по договору.
           </p>
 
           <!-- Кнопки -->
-          <div class="flex flex-col sm:flex-row gap-4" v-motion :initial="{ opacity: 0, y: 40 }" :visible="{
+          <div class="flex flex-col sm:flex-row gap-4" v-motion :initial="{ opacity: 0, y: 40 }" :visible-once="{
             opacity: 1,
             y: 0,
             transition: {
@@ -54,7 +55,7 @@
               delay: 600
             }
           }">
-            <div v-motion :initial="{ scale: 0, rotate: -10 }" :visible="{
+            <div v-motion :initial="{ scale: 0, rotate: -10 }" :visible-once="{
               scale: 1,
               rotate: 0,
               transition: {
@@ -65,12 +66,12 @@
               }
             }">
               <UButton to="/request" variant="solid" color="primary"
-                class="text-gray-800 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" size="xl">
+                class="text-white transform transition-all duration-300 hover:scale-105 backdrop-blur-sm" size="xl">
                 Оставить заявку
               </UButton>
             </div>
 
-            <div v-motion :initial="{ scale: 0, rotate: 10 }" :visible="{
+            <div v-motion :initial="{ scale: 0, rotate: 10 }" :visible-once="{
               scale: 1,
               rotate: 0,
               transition: {
@@ -90,7 +91,7 @@
         </div>
 
         <!-- Правая часть - карта -->
-        <div class="hidden md:block relative" v-motion :initial="{ opacity: 0, x: 100, rotateY: 45 }" :visible="{
+        <div class="hidden md:block relative" v-motion :initial="{ opacity: 0, x: 100, rotateY: 45 }" :visible-once="{
           opacity: 1,
           x: 0,
           rotateY: 0,
@@ -104,7 +105,7 @@
 
           <!-- Фоновое изображение -->
           <NuxtImg src="/images/map-ples.png" class="absolute inset-0 w-full h-full object-cover rounded-lg" v-motion
-            :initial="{ scale: 1.2, opacity: 0 }" :visible="{
+            :initial="{ scale: 1.2, opacity: 0 }" :visible-once="{
               scale: 1,
               opacity: 1,
               transition: {
@@ -115,7 +116,7 @@
 
           <!-- Карта-контейнер -->
           <div class="w-full h-80 bg-white/10 rounded-lg relative overflow-hidden border border-primary-500" v-motion
-            :initial="{ scale: 0.8, opacity: 0, rotate: 5 }" :visible="{
+            :initial="{ scale: 0.8, opacity: 0, rotate: 5 }" :visible-once="{
               scale: 1,
               opacity: 1,
               rotate: 0,
@@ -129,7 +130,7 @@
             <!-- Сетка карты -->
             <div class="absolute inset-0 grid grid-cols-6 grid-rows-6">
               <div v-for="i in 36" :key="i" class="bg-white/20 transition-all duration-1000 border border-primary-500"
-                v-motion :initial="{ opacity: 0, scale: 0 }" :visible="{
+                v-motion :initial="{ opacity: 0, scale: 0 }" :visible-once="{
                   opacity: 1,
                   scale: 1,
                   transition: {
@@ -143,7 +144,7 @@
 
             <!-- Маркеры на карте -->
             <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping" v-motion
-              :initial="{ scale: 0, opacity: 0 }" :visible="{
+              :initial="{ scale: 0, opacity: 0 }" :visible-once="{
                 scale: 1,
                 opacity: 1,
                 transition: {
@@ -154,7 +155,7 @@
                 }
               }"></div>
             <div class="absolute top-2/3 right-1/4 w-3 h-3 bg-blue-500 rounded-full animate-ping" v-motion
-              :initial="{ scale: 0, opacity: 0 }" :visible="{
+              :initial="{ scale: 0, opacity: 0 }" :visible-once="{
                 scale: 1,
                 opacity: 1,
                 transition: {
@@ -165,7 +166,7 @@
                 }
               }"></div>
             <div class="absolute bottom-1/4 left-1/2 w-3 h-3 bg-green-500 rounded-full animate-ping" v-motion
-              :initial="{ scale: 0, opacity: 0 }" :visible="{
+              :initial="{ scale: 0, opacity: 0 }" :visible-once="{
                 scale: 1,
                 opacity: 1,
                 transition: {
