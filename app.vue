@@ -34,8 +34,10 @@ onMounted(() => {
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
             ym(102633109, "init", {
                  clickmap:true,
-                 trackLinks:true,
-                 accurateTrackBounce:true
+                 referrer: document.referrer,
+                 url: location.href,
+                 accurateTrackBounce:true,
+                 trackLinks:true
             });
           `,
           type: 'text/javascript'
