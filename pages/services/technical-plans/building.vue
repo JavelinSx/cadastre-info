@@ -41,6 +41,31 @@ definePageMeta({
 
 // Используем данные из файла
 const serviceData = ref(technicalPlanBuildingData);
+
+useSeoMeta({
+    title: 'Технический план здания в Плесецке | Оформление нежилых зданий',
+    description: 'Технический план здания в Плесецком районе. Обмер, подготовка документов для кадастрового учета. От 15000₽.',
+    ogTitle: 'Технический план здания в Плесецке',
+    ogUrl: 'https://pleskad.ru/services/technical-plans/building'
+})
+
+const { addSchema, createServiceSchema, createBreadcrumbSchema, createFAQSchema } = useSchemaOrg()
+
+addSchema([
+    createServiceSchema({
+        name: 'Технический план здания',
+        description: 'Подготовка технического плана нежилого здания для постановки на кадастровый учет и регистрации права собственности',
+        price: 15000,
+        url: 'https://pleskad.ru/services/technical-plans/building'
+    }),
+    createBreadcrumbSchema([
+        { name: 'Главная', url: 'https://pleskad.ru' },
+        { name: 'Услуги', url: 'https://pleskad.ru/services' },
+        { name: 'Технические планы', url: 'https://pleskad.ru/services/technical-plans' },
+        { name: 'Технический план здания', url: 'https://pleskad.ru/services/technical-plans/building' }
+    ]),
+    createFAQSchema(serviceData.value.faq.questions.map(q => ({ question: q.question, answer: q.answer })))
+])
 </script>
 
 <style scoped>

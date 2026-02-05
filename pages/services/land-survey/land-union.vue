@@ -41,6 +41,31 @@ definePageMeta({
 
 // Используем данные из файла
 const serviceData = ref(landUnionData);
+
+useSeoMeta({
+  title: 'Объединение земельных участков в Плесецке | Слияние участков',
+  description: 'Объединение смежных земельных участков в Плесецком районе. Оформление межевого плана, регистрация в ЕГРН. От 17000₽.',
+  ogTitle: 'Объединение земельных участков в Плесецке',
+  ogUrl: 'https://pleskad.ru/services/land-survey/land-union'
+})
+
+const { addSchema, createServiceSchema, createBreadcrumbSchema, createFAQSchema } = useSchemaOrg()
+
+addSchema([
+  createServiceSchema({
+    name: 'Объединение земельных участков',
+    description: 'Объединение смежных земельных участков в один участок с оформлением межевого плана и постановкой на кадастровый учет',
+    price: 17000,
+    url: 'https://pleskad.ru/services/land-survey/land-union'
+  }),
+  createBreadcrumbSchema([
+    { name: 'Главная', url: 'https://pleskad.ru' },
+    { name: 'Услуги', url: 'https://pleskad.ru/services' },
+    { name: 'Кадастровые работы', url: 'https://pleskad.ru/services/land-survey' },
+    { name: 'Объединение участков', url: 'https://pleskad.ru/services/land-survey/land-union' }
+  ]),
+  createFAQSchema(serviceData.value.faq.questions.map(q => ({ question: q.question, answer: q.answer })))
+])
 </script>
 
 <style scoped>

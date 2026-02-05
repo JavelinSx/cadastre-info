@@ -41,6 +41,39 @@ definePageMeta({
 
 // Используем данные из файла
 const serviceData = ref(landDivisionData);
+
+// SEO meta-теги
+useSeoMeta({
+  title: 'Раздел земельного участка в Плесецке | Деление участка',
+  description: 'Раздел земельного участка в Плесецком районе. Оформление межевого плана, согласование с владельцами, регистрация в ЕГРН. От 18000₽.',
+  ogTitle: 'Раздел земельного участка в Плесецке',
+  ogDescription: 'Профессиональное деление земельных участков. Межевой план, согласование, регистрация.',
+  ogUrl: 'https://pleskad.ru/services/land-survey/land-division'
+})
+
+// Schema.org разметка
+const { addSchema, createServiceSchema, createBreadcrumbSchema, createFAQSchema } = useSchemaOrg()
+
+const faqItems = serviceData.value.faq.questions.map(q => ({
+  question: q.question,
+  answer: q.answer
+}))
+
+addSchema([
+  createServiceSchema({
+    name: 'Раздел земельного участка',
+    description: 'Деление земельного участка на несколько самостоятельных участков с оформлением межевого плана и регистрацией в ЕГРН',
+    price: 18000,
+    url: 'https://pleskad.ru/services/land-survey/land-division'
+  }),
+  createBreadcrumbSchema([
+    { name: 'Главная', url: 'https://pleskad.ru' },
+    { name: 'Услуги', url: 'https://pleskad.ru/services' },
+    { name: 'Кадастровые работы', url: 'https://pleskad.ru/services/land-survey' },
+    { name: 'Раздел участка', url: 'https://pleskad.ru/services/land-survey/land-division' }
+  ]),
+  createFAQSchema(faqItems)
+])
 </script>
 
 <style scoped>
