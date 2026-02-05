@@ -1,7 +1,7 @@
 <template>
   <section class="py-16 bg-white text-gray-600 flex justify-center">
     <div class="container-custom">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
         <!-- Левая часть - основная информация -->
         <div v-motion :initial="{ opacity: 0, x: -50 }" :visible-once="{
           opacity: 1,
