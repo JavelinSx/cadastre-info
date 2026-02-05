@@ -41,6 +41,39 @@ definePageMeta({
 
 // Используем данные из файла
 const serviceData = ref(technicalPlanHouseData);
+
+// SEO meta-теги
+useSeoMeta({
+    title: 'Технический план дома в Плесецке | Оформление жилого дома',
+    description: 'Технический план жилого дома в Плесецком районе. Подготовка документов для постановки на кадастровый учет и регистрации права собственности. От 12000₽.',
+    ogTitle: 'Технический план дома в Плесецке',
+    ogDescription: 'Профессиональная подготовка технического плана жилого дома. Кадастровый учет и регистрация права собственности.',
+    ogUrl: 'https://pleskad.ru/services/technical-plans/house'
+})
+
+// Schema.org разметка
+const { addSchema, createServiceSchema, createBreadcrumbSchema, createFAQSchema } = useSchemaOrg()
+
+const faqItems = serviceData.value.faq.questions.map(q => ({
+    question: q.question,
+    answer: q.answer
+}))
+
+addSchema([
+    createServiceSchema({
+        name: 'Технический план жилого дома',
+        description: 'Подготовка технического плана жилого дома для постановки на кадастровый учет и регистрации права собственности в Росреестре',
+        price: 12000,
+        url: 'https://pleskad.ru/services/technical-plans/house'
+    }),
+    createBreadcrumbSchema([
+        { name: 'Главная', url: 'https://pleskad.ru' },
+        { name: 'Услуги', url: 'https://pleskad.ru/services' },
+        { name: 'Технические планы', url: 'https://pleskad.ru/services/technical-plans' },
+        { name: 'Технический план дома', url: 'https://pleskad.ru/services/technical-plans/house' }
+    ]),
+    createFAQSchema(faqItems)
+])
 </script>
 
 <style scoped>

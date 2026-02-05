@@ -35,4 +35,13 @@ useSeoMeta({
   twitterDescription: 'Кадастровые работы в Плесецком районе. Межевание, технические планы, кадастровый учет.',
   twitterImage: 'https://pleskad.ru/images/og-homepage.jpg'
 })
+
+// Schema.org разметка для улучшения SEO
+const { addSchema, createOrganizationSchema, createLocalBusinessSchema, createWebSiteSchema } = useSchemaOrg()
+
+addSchema([
+  createOrganizationSchema(),
+  createLocalBusinessSchema(),
+  createWebSiteSchema()
+])
 </script>

@@ -80,6 +80,35 @@ definePageMeta({
   title: 'Часто задаваемые вопросы о кадастровых услугах',
   description: 'Ответы на популярные вопросы о кадастровом учете и оформлении недвижимости.'
 });
+
+// SEO meta-теги
+useSeoMeta({
+  title: 'Часто задаваемые вопросы о кадастровых услугах | ПлесКад',
+  description: 'Ответы на популярные вопросы о кадастровом учете, межевании, технических планах и оформлении недвижимости в Плесецком районе.',
+  ogTitle: 'FAQ - Часто задаваемые вопросы о кадастровых услугах',
+  ogDescription: 'Полезная информация о кадастровых работах. Ответы на популярные вопросы от профессионального кадастрового инженера.',
+  ogUrl: 'https://pleskad.ru/information/faq'
+})
+
+// Schema.org разметка для FAQ
+const { addSchema, createFAQSchema, createBreadcrumbSchema } = useSchemaOrg()
+
+// Собираем все вопросы из всех категорий
+const allFAQs = data.value.categories.flatMap(category =>
+  category.questions.map(q => ({
+    question: q.question,
+    answer: q.answer
+  }))
+)
+
+addSchema([
+  createFAQSchema(allFAQs),
+  createBreadcrumbSchema([
+    { name: 'Главная', url: 'https://pleskad.ru' },
+    { name: 'Информация', url: 'https://pleskad.ru/information' },
+    { name: 'Часто задаваемые вопросы', url: 'https://pleskad.ru/information/faq' }
+  ])
+])
 </script>
 
 <style scoped>

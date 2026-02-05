@@ -41,6 +41,40 @@ definePageMeta({
 
 // Используем данные из файла
 const serviceData = ref(landBoundaryData);
+
+// SEO meta-теги
+useSeoMeta({
+    title: 'Межевание земельного участка в Плесецке | Уточнение границ участка',
+    description: 'Межевание и уточнение границ земельных участков в Плесецком районе. Профессиональный кадастровый инженер. Работа с ЕГРН. От 15000₽.',
+    ogTitle: 'Межевание земельного участка в Плесецке',
+    ogDescription: 'Профессиональное межевание земельных участков. Уточнение границ, межевой план, регистрация в ЕГРН.',
+    ogUrl: 'https://pleskad.ru/services/land-survey/land-boundary'
+})
+
+// Schema.org разметка для услуги
+const { addSchema, createServiceSchema, createBreadcrumbSchema, createFAQSchema } = useSchemaOrg()
+
+// Собираем FAQ из данных
+const faqItems = serviceData.value.faq.questions.map(q => ({
+    question: q.question,
+    answer: q.answer
+}))
+
+addSchema([
+    createServiceSchema({
+        name: 'Межевание земельного участка',
+        description: 'Установление и уточнение границ земельного участка на местности с оформлением межевого плана и постановкой на кадастровый учет в ЕГРН',
+        price: 15000,
+        url: 'https://pleskad.ru/services/land-survey/land-boundary'
+    }),
+    createBreadcrumbSchema([
+        { name: 'Главная', url: 'https://pleskad.ru' },
+        { name: 'Услуги', url: 'https://pleskad.ru/services' },
+        { name: 'Кадастровые работы с земельными участками', url: 'https://pleskad.ru/services/land-survey' },
+        { name: 'Межевание', url: 'https://pleskad.ru/services/land-survey/land-boundary' }
+    ]),
+    createFAQSchema(faqItems)
+])
 </script>
 
 <style scoped>
