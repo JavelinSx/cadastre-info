@@ -9,6 +9,8 @@
     "preview": "nuxt preview",
     "deploy": "gh-pages -d .output/public",
     "build:deploy": "npm run generate && npm run deploy",
+    "indexnow": "node scripts/indexnow.js",
+    "deploy:full": "npm run generate && npm run deploy && npm run indexnow",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
