@@ -147,7 +147,14 @@ jobs:
 
           echo "✅ All files uploaded with correct Content-Type headers"
 
+      - name: Notify search engines via IndexNow
+        run: |
+          echo "📤 Notifying search engines about site updates..."
+          node scripts/indexnow.js
+          echo "✅ IndexNow notifications sent"
+
       - name: Deployment complete
         run: |
           echo "✅ Deployment completed successfully!"
           echo "🌐 Site URL: https://${{ secrets.YC_BUCKET_NAME }}.storage.yandexcloud.net"
+          echo "🔔 Search engines notified via IndexNow"
