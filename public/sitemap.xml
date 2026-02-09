@@ -14,7 +14,7 @@
 
   <!-- О нас -->
   <url>
-    <loc>https://pleskad.ru/about</loc>
+    <loc>https://pleskad.ru/about/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
 
   <!-- Контакты -->
   <url>
-    <loc>https://pleskad.ru/contacts</loc>
+    <loc>https://pleskad.ru/contacts/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!-- Оставить заявку -->
   <url>
-    <loc>https://pleskad.ru/request</loc>
+    <loc>https://pleskad.ru/request/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -38,28 +38,28 @@
 
   <!-- Блог -->
   <url>
-    <loc>https://pleskad.ru/blog</loc>
+    <loc>https://pleskad.ru/blog/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/blog/cadastral-value-changes</loc>
+    <loc>https://pleskad.ru/blog/cadastral-value-changes/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/blog/law-changes-2025</loc>
+    <loc>https://pleskad.ru/blog/law-changes-2025/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/blog/registration-simplification</loc>
+    <loc>https://pleskad.ru/blog/registration-simplification/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -67,35 +67,35 @@
 
   <!-- Информация -->
   <url>
-    <loc>https://pleskad.ru/information</loc>
+    <loc>https://pleskad.ru/information/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/information/docs</loc>
+    <loc>https://pleskad.ru/information/docs/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/information/faq</loc>
+    <loc>https://pleskad.ru/information/faq/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/information/glossary</loc>
+    <loc>https://pleskad.ru/information/glossary/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/information/laws</loc>
+    <loc>https://pleskad.ru/information/laws/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,14 +103,14 @@
 
   <!-- SEO страницы -->
   <url>
-    <loc>https://pleskad.ru/kadastrovyi-inzhener-plesetsk</loc>
+    <loc>https://pleskad.ru/kadastrovyi-inzhener-plesetsk/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/mezhevanie-plesetsk</loc>
+    <loc>https://pleskad.ru/mezhevanie-plesetsk/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -118,7 +118,7 @@
 
   <!-- Политика конфиденциальности -->
   <url>
-    <loc>https://pleskad.ru/privacy-policy</loc>
+    <loc>https://pleskad.ru/privacy-policy/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -126,7 +126,7 @@
 
   <!-- Услуги -->
   <url>
-    <loc>https://pleskad.ru/services</loc>
+    <loc>https://pleskad.ru/services/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -134,7 +134,7 @@
 
   <!-- Консультации -->
   <url>
-    <loc>https://pleskad.ru/services/consultations</loc>
+    <loc>https://pleskad.ru/services/consultations/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -142,49 +142,49 @@
 
   <!-- Геодезические работы -->
   <url>
-    <loc>https://pleskad.ru/services/geodesic</loc>
+    <loc>https://pleskad.ru/services/geodesic/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-basis</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-basis/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-boundary</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-boundary/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-calculation</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-calculation/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-executive</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-executive/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-survey</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-survey/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/geodesic/geodesic-topography</loc>
+    <loc>https://pleskad.ru/services/geodesic/geodesic-topography/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -192,49 +192,49 @@
 
   <!-- Межевание земельных участков -->
   <url>
-    <loc>https://pleskad.ru/services/land-survey</loc>
+    <loc>https://pleskad.ru/services/land-survey/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-allocation</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-allocation/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-boundary</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-boundary/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-division</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-division/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-formation</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-formation/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-redistribution</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-redistribution/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/land-survey/land-union</loc>
+    <loc>https://pleskad.ru/services/land-survey/land-union/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -242,63 +242,63 @@
 
   <!-- Технические планы -->
   <url>
-    <loc>https://pleskad.ru/services/technical-plans</loc>
+    <loc>https://pleskad.ru/services/technical-plans/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/building</loc>
+    <loc>https://pleskad.ru/services/technical-plans/building/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/construction-in-progress</loc>
+    <loc>https://pleskad.ru/services/technical-plans/construction-in-progress/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/construction</loc>
+    <loc>https://pleskad.ru/services/technical-plans/construction/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/floorplan</loc>
+    <loc>https://pleskad.ru/services/technical-plans/floorplan/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/house</loc>
+    <loc>https://pleskad.ru/services/technical-plans/house/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/inspection</loc>
+    <loc>https://pleskad.ru/services/technical-plans/inspection/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/part-building</loc>
+    <loc>https://pleskad.ru/services/technical-plans/part-building/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pleskad.ru/services/technical-plans/room</loc>
+    <loc>https://pleskad.ru/services/technical-plans/room/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

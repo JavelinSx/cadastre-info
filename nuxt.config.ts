@@ -57,7 +57,7 @@ export default defineNuxtConfig({
           content:
             "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
         },
-        { name: "yandex-verification", content: "79e510bcd9f2ac5d" },
+        { name: "yandex-verification", content: "43732c5a8054cd69" },
         // Open Graph
         {
           property: "og:title",
