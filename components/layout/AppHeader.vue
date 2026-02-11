@@ -94,8 +94,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSearch } from '~/composables/useSearch';
+import logo from '~/public/images/pleskad-icon.ico';
 import SearchDialog from '../search/SearchDialog.vue';
-import logo from '~/public/images/pleskad-icon.ico'
 const isMenuOpen = ref(false);
 const { openSearch } = useSearch();
 
@@ -103,7 +103,6 @@ const navLinks = [
   { title: 'Главная', path: '/' },
   { title: 'Услуги', path: '/services' },
   { title: 'Информация', path: '/information' },
-  { title: 'Блог', path: '/blog' },
   { title: 'О нас', path: '/about' },
 ];
 
@@ -113,7 +112,6 @@ const getIconForLink = (title: string) => {
     'Главная': 'i-heroicons-home',
     'Услуги': 'i-heroicons-wrench-screwdriver',
     'Информация': 'i-heroicons-information-circle',
-    'Блог': 'i-heroicons-newspaper',
     'О нас': 'i-heroicons-users',
     'Контакты': 'i-heroicons-phone'
   };

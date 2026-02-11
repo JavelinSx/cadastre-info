@@ -10,14 +10,15 @@
         stiffness: 70
       }
     }">
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800" v-motion :initial="{ opacity: 0, y: 20 }" :visible="{
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 350,
-        delay: 100
-      }
-    }">
+    <h2 class="text-2xl text-center font-semibold mb-6 text-gray-800" v-motion :initial="{ opacity: 0, y: 20 }"
+      :visible="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 350,
+          delay: 100
+        }
+      }">
       {{ title }}
     </h2>
     <div class="flex flex-col lg:flex-row gap-8">

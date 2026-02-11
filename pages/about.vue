@@ -158,14 +158,15 @@
 </template>
 
 <script setup lang="ts">
+import AboutAdvantages from '~/components/about/AboutAdvantages.vue';
+import AboutCta from '~/components/about/AboutCta.vue';
+import AboutExperience from '~/components/about/AboutExperience.vue';
 import AboutHeader from '~/components/about/AboutHeader.vue';
 import AboutMission from '~/components/about/AboutMission.vue';
-import AboutTeam from '~/components/about/AboutTeam.vue';
-import AboutAdvantages from '~/components/about/AboutAdvantages.vue';
 import AboutOffice from '~/components/about/AboutOffice.vue';
-import AboutExperience from '~/components/about/AboutExperience.vue';
-import AboutCta from '~/components/about/AboutCta.vue';
-
+import AboutTeam from '~/components/about/AboutTeam.vue';
+import mez from '~/public/images/avatar/mez.png';
+import zuev from '~/public/images/avatar/zuev.png';
 definePageMeta({
   title: 'О нас - ПлесКад | Кадастровый инженер в Плесецком районе',
   description: 'Компания ПлесКад предоставляет профессиональные услуги кадастрового инженера в Плесецком районе. Более 12 лет опыта в сфере землеустройства и кадастровых работ.'
@@ -193,12 +194,14 @@ const pageData = {
       {
         name: 'Зуев Андрей Николаевич',
         position: 'Кадастровый инженер',
-        description: 'Квалифицированный специалист с многолетним опытом работы в сфере кадастровой деятельности и землеустройства, геодезии, маркшейдерии.'
+        description: 'Квалифицированный специалист с многолетним опытом работы в сфере кадастровой деятельности и землеустройства, геодезии, маркшейдерии.',
+        avatar: zuev
       },
       {
         name: 'Мезенцев Андрей Алексеевич',
         position: 'Технический специалист',
-        description: 'Технический специалист по геодезическим работам и техническим аспектам кадастровой деятельности с опытом использования современного оборудования.'
+        description: 'Технический специалист по геодезическим работам и техническим аспектам кадастровой деятельности с опытом использования современного оборудования.',
+        avatar: mez
       },
       {
         name: 'Шарова Елена Сергеевна',

@@ -30,16 +30,16 @@
           scale: 0.9,
           rotateX: 15
         }" :visible="{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotateX: 0,
-                  transition: {
-                    duration: 350,
-                    delay: 150 + (index * 100),
-                    type: 'spring'
-                  }
-                }">
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateX: 0,
+          transition: {
+            duration: 350,
+            delay: 150 + (index * 100),
+            type: 'spring'
+          }
+        }">
         <div class="flex-shrink-0 mt-1">
           <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center" v-motion
             :initial="{ scale: 0, rotate: 90 }" :visible="{
@@ -56,14 +56,15 @@
           </div>
         </div>
         <div class="ml-4 md:flex flex-col items-center">
-          <h3 class="text-lg font-medium text-gray-800 mb-1" v-motion :initial="{ opacity: 0, x: -15 }" :visible="{
-            opacity: 1,
-            x: 0,
-            transition: {
-              duration: 300,
-              delay: 250 + (index * 100)
-            }
-          }">
+          <h3 class="text-lg text-center font-medium text-gray-800 mb-1" v-motion :initial="{ opacity: 0, x: -15 }"
+            :visible="{
+              opacity: 1,
+              x: 0,
+              transition: {
+                duration: 300,
+                delay: 250 + (index * 100)
+              }
+            }">
             {{ feature.title }}
           </h3>
           <p class="text-gray-600 text-center" v-motion :initial="{ opacity: 0, y: 10 }" :visible="{

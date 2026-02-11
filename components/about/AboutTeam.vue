@@ -29,16 +29,16 @@
           scale: 0.9,
           rotateY: index % 2 === 0 ? -10 : 10
         }" :visible="{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotateY: 0,
-                  transition: {
-                    duration: 400,
-                    delay: 150 + (index * 150),
-                    type: 'spring'
-                  }
-                }">
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateY: 0,
+          transition: {
+            duration: 400,
+            delay: 150 + (index * 150),
+            type: 'spring'
+          }
+        }">
         <div class="mb-4 flex justify-center">
           <div class="w-32 h-32 rounded-full bg-primary-100 flex items-center justify-center shadow-sm" v-motion
             :initial="{ scale: 0, rotate: 180 }" :visible="{
@@ -51,7 +51,8 @@
                 stiffness: 120
               }
             }">
-            <UIcon name="i-heroicons-user" class="w-16 h-16 text-primary-600" />
+            <img v-if="member.avatar" :src="member.avatar" class="w-full h-full rounded-full object-cover" />
+            <UIcon v-else name="i-heroicons-user" class="w-16 h-16 text-primary-600" />
           </div>
         </div>
         <h3 class="text-xl font-semibold text-gray-800 text-center mb-2 w-56" v-motion :initial="{ opacity: 0, y: 15 }"
@@ -96,6 +97,7 @@ interface TeamMember {
   name: string;
   position: string;
   description: string;
+  avatar?: string;
 }
 
 defineProps({
